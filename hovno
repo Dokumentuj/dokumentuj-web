@@ -1,0 +1,2807 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Pomůžeme vám napsat odpovědi na úřední výzvy, odvolání a žádosti. Rychle, jednoduše a online. Ceny od 199 Kč. Expresní vyřízení do 24 hodin.">
+ <meta name="keywords" content="úřední výzvy, odvolání, žádosti, právní pomoc, úřední dokumenty, administrativa, online služby">
+ <meta name="author" content="dokumentuj.cz">
+ <meta name="robots" content="index, follow">
+ 
+ <!-- Open Graph tags -->
+ <meta property="og:title" content="dokumentuj.cz - Odpovědi na úřední výzvy">
+ <meta property="og:description" content="Pomůžeme vám napsat odpovědi na úřední výzvy, odvolání a žádosti. Rychle, jednoduše a online. Ceny od 199 Kč.">
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://dokumentuj.cz">
+ <meta property="og:image" content="https://dokumentuj.cz/og-image.jpg">
+ <meta property="og:locale" content="cs_CZ">
+ 
+ <!-- Twitter Card tags -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="dokumentuj.cz - Odpovědi na úřední výzvy">
+ <meta name="twitter:description" content="Pomůžeme vám napsat odpovědi na úřední výzvy, odvolání a žádosti. Rychle, jednoduše a online.">
+ 
+ <title data-cs="dokumentuj.cz - Odpovědi na úřední výzvy | Rychle a profesionálně" data-ua="dokumentuj.cz - Відповіді на офіційні виклики | Швидко та професійно">dokumentuj.cz - Odpovědi na úřední výzvy | Rychle a profesionálně</title>
+ 
+ <style>
+ /* ===== RESET A ZÁKLADNÍ STYLY ===== */
+ *, *::before, *::after {
+ box-sizing: border-box;
+ }
+ :root {
+ --primary-color: #0056a6;
+ --accent-color: #0073e6;
+ --bg-color: #f7faff;
+ --white: #ffffff;
+ --text-color: #333;
+ --border-color: #e1e5e9;
+ --hover-color: #f8f9fa;
+ }
+ html, body {
+ margin: 0;
+ padding: 0;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background: var(--bg-color);
+ color: var(--text-color);
+ line-height: 1.6;
+ height: auto !important;
+ min-height: 100vh !important;
+ overflow-x: hidden !important;
+ width: 100% !important;
+ }
+
+/* ===== WIZARD STYLY ===== */
+.wizard-container {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 900px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.wizard-container.hidden {
+    display: none;
+}
+
+.wizard-header {
+    background: linear-gradient(135deg, #0073e6 0%, #0056a6 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.wizard-header h2 {
+    margin: 0 0 20px 0;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: white; /* Přidáno pro bílý nadpis */
+}
+
+.wizard-progress {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.progress-step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.progress-step.active {
+    background: white;
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.progress-step.completed {
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--primary-color);
+}
+
+.wizard-content {
+    padding: 40px;
+}
+
+.wizard-step {
+    display: none;
+}
+
+.wizard-step.active {
+    display: block;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wizard-question {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.wizard-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.wizard-option {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wizard-option:hover {
+    border-color: var(--accent-color);
+    background: #f8fbff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,115,230,0.1);
+}
+
+.wizard-option.selected {
+    border-color: #4CAF50;
+    background-color: #f8fff8;
+    transform: scale(1.02);
+}
+
+.option-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.wizard-option strong {
+    display: block;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.wizard-option p {
+    color: var(--text-color);
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.wizard-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.wizard-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.wizard-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.wizard-btn.secondary {
+    background: #f8f9fa;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.wizard-btn.secondary:hover:not(:disabled) {
+    background: #e9ecef;
+}
+
+.wizard-btn.primary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.wizard-btn.primary:hover:not(:disabled) {
+    background: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.wizard-summary {
+    background: #f0f8ff;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.summary-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.summary-item {
+    margin: 10px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.price-summary {
+    font-size: 18px;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* ===== MOBILNÍ OPTIMALIZACE WIZARDU ===== */
+@media (max-width: 768px) {
+    .wizard-container {
+        margin: 10px;
+        border-radius: 8px;
+    }
+    
+    .wizard-header {
+        padding: 20px;
+    }
+    
+    .wizard-header h2 {
+        font-size: 1.4em;
+    }
+    
+    .wizard-content {
+        padding: 20px;
+    }
+    
+    .wizard-question {
+        font-size: 1.3em;
+    }
+    
+    .wizard-options {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .wizard-option {
+        padding: 20px 15px;
+    }
+    
+    .progress-step {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .wizard-buttons {
+        flex-direction: column;
+    }
+    
+    .wizard-btn {
+        width: 100%;
+    }
+}
+
+ /* ===== JAZYKOVÝ PŘEPÍNAČ ===== */
+ .language-switcher {
+ position: fixed;
+ top: 20px;
+ right: 20px;
+ z-index: 1001;
+ display: flex;
+ background: rgba(255, 255, 255, 0.95);
+ backdrop-filter: blur(10px);
+ border-radius: 25px;
+ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+ overflow: hidden;
+ border: 1px solid rgba(0, 115, 230, 0.2);
+ }
+ .language-switcher button {
+ background: none;
+ border: none;
+ padding: 10px 15px;
+ cursor: pointer;
+ font-size: 14px;
+ font-weight: 600;
+ color: var(--text-color);
+ transition: all 0.3s ease;
+ display: flex;
+ align-items: center;
+ gap: 5px;
+ }
+ .language-switcher button:hover {
+ background: rgba(0, 115, 230, 0.1);
+ }
+ .language-switcher button.active {
+ background: var(--accent-color);
+ color: white;
+ }
+ .flag-icon {
+ font-size: 16px;
+ }
+ /* ===== VYLEPŠENÁ HERO SEKCE ===== */
+ .hero-enhanced {
+ position: relative;
+ background: linear-gradient(135deg, #0073e6 0%, #0056a6 100%);
+ color: white;
+ text-align: center;
+ padding: 60px 20px 50px 20px;
+ overflow: hidden;
+ min-height: 50vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ }
+ .hero-background {
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ overflow: hidden;
+ z-index: 1;
+ }
+ .hero-shape {
+ position: absolute;
+ opacity: 0.1;
+ border-radius: 50%;
+ animation: float 6s ease-in-out infinite;
+ }
+ .hero-shape-1 {
+ width: 200px;
+ height: 200px;
+ background: white;
+ top: 10%;
+ left: 10%;
+ animation-delay: 0s;
+ }
+ .hero-shape-2 {
+ width: 150px;
+ height: 150px;
+ background: white;
+ top: 60%;
+ right: 15%;
+ animation-delay: 2s;
+ }
+ .hero-shape-3 {
+ width: 100px;
+ height: 100px;
+ background: white;
+ top: 30%;
+ right: 30%;
+ animation-delay: 4s;
+ }
+ @keyframes float {
+ 0%, 100% { transform: translateY(0px) rotate(0deg); }
+ 50% { transform: translateY(-20px) rotate(180deg); }
+ }
+ .hero-content {
+ position: relative;
+ z-index: 2;
+ max-width: 800px;
+ animation: fadeInUp 1s ease-out;
+ width: 100%;
+ padding: 0 10px;
+ word-wrap: break-word;
+ overflow-wrap: break-word;
+ }
+ @keyframes fadeInUp {
+ from {
+ opacity: 0;
+ transform: translateY(30px);
+ }
+ to {
+ opacity: 1;
+ transform: translateY(0);
+ }
+ }
+ .hero-title {
+ margin-bottom: 30px;
+ animation: fadeInUp 1s ease-out 0.4s both;
+ }
+ .title-main {
+ display: block;
+ font-size: 3.2em;
+ font-weight: 700;
+ margin-bottom: 10px;
+ text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+ }
+ .title-subtitle {
+ display: block;
+ font-size: 1.3em;
+ font-weight: 400;
+ opacity: 0.9;
+ color: #E3F2FD;
+ }
+ .hero-description {
+ font-size: 1.25em;
+ line-height: 1.6;
+ margin-bottom: 40px;
+ opacity: 0.95;
+ animation: fadeInUp 1s ease-out 0.6s both;
+ }
+ .hero-features {
+ display: flex;
+ justify-content: center;
+ gap: 40px;
+ margin-bottom: 50px;
+ animation: fadeInUp 1s ease-out 0.8s both;
+ }
+ .feature-item {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 10px;
+ background: rgba(255, 255, 255, 0.15);
+ padding: 20px 15px;
+ border-radius: 20px;
+ font-weight: 500;
+ backdrop-filter: blur(5px);
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ transition: transform 0.3s ease;
+ min-width: 120px;
+ }
+ .feature-item:hover {
+ transform: translateY(-2px);
+ background: rgba(255, 255, 255, 0.2);
+ }
+ .feature-circle {
+ width: 50px;
+ height: 50px;
+ background: rgba(255, 255, 255, 0.2);
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 5px;
+ }
+ .feature-icon {
+ font-size: 20px;
+ }
+ .feature-text {
+ font-size: 14px;
+ text-align: center;
+ }
+ .hero-cta {
+ display: flex;
+ justify-content: center;
+ gap: 20px;
+ animation: fadeInUp 1s ease-out 1s both;
+ }
+ .cta-primary {
+ background: white;
+ color: var(--primary-color);
+ padding: 16px 32px;
+ border-radius: 30px;
+ text-decoration: none;
+ font-weight: 600;
+ font-size: 16px;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+ transition: all 0.3s ease;
+ }
+ .cta-primary:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+ color: var(--primary-color);
+ }
+ .cta-arrow {
+ transition: transform 0.3s ease;
+ }
+ .cta-primary:hover .cta-arrow {
+ transform: translateX(3px);
+ }
+ .cta-secondary {
+ color: white;
+ padding: 16px 32px;
+ border: 2px solid rgba(255, 255, 255, 0.3);
+ border-radius: 30px;
+ text-decoration: none;
+ font-weight: 500;
+ transition: all 0.3s ease;
+ }
+ .cta-secondary:hover {
+ background: rgba(255, 255, 255, 0.1);
+ border-color: rgba(255, 255, 255, 0.5);
+ color: white;
+ }
+ /* ===== NAVIGACE ===== */
+ .nav-enhanced {
+ background: var(--accent-color);
+ padding: 0;
+ box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ }
+ .nav-container {
+ display: flex;
+ justify-content: center;
+ max-width: 1000px;
+ margin: 0 auto;
+ }
+ .nav-item {
+ color: white;
+ text-decoration: none;
+ padding: 18px 25px;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ font-weight: 500;
+ transition: all 0.3s ease;
+ position: relative;
+ overflow: hidden;
+ }
+ .nav-item:hover {
+ background: rgba(255, 255, 255, 0.1);
+ transform: translateY(-1px);
+ }
+ .nav-item:focus {
+ outline: 2px solid white;
+ outline-offset: -2px;
+ }
+ .nav-icon {
+ font-size: 16px;
+ opacity: 0.8;
+ }
+ /* ===== HLAVNÍ OBSAH ===== */
+ main {
+ max-width: 1000px;
+ margin: auto;
+ min-height: auto !important;
+ height: auto !important;
+ }
+ section {
+ padding: 60px 20px;
+ min-height: auto !important;
+ height: auto !important;
+ }
+ h2 {
+ font-size: 2.2em;
+ text-align: center;
+ color: var(--primary-color);
+ margin-bottom: 50px;
+ font-weight: 600;
+ }
+ h3 {
+ font-size: 1.4em;
+ color: var(--primary-color);
+ margin-bottom: 15px;
+ font-weight: 600;
+ }
+ .steps, .options {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-around;
+ gap: 20px;
+ }
+ .step, .option {
+ background: white;
+ padding: 30px 20px;
+ border-radius: 12px;
+ text-align: center;
+ flex: 1 1 280px;
+ box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+ transition: transform 0.3s ease;
+ }
+ .option {
+ cursor: pointer;
+ }
+ .step:hover, .option:hover {
+ transform: translateY(-5px);
+ }
+ .option:focus {
+ outline: 2px solid var(--accent-color);
+ outline-offset: 2px;
+ }
+ .option.selected {
+ border: 2px solid var(--accent-color);
+ background: #f0f8ff;
+ }
+ .icon {
+ font-size: 40px;
+ margin-bottom: 15px;
+ color: var(--accent-color);
+ }
+ .price-info {
+ text-align: center;
+ padding: 15px;
+ margin: 20px 0;
+ border-radius: 8px;
+ background: #fff3cd;
+ border: 1px solid #ffcc00;
+ color: #8a6d3b;
+ }
+ form {
+ background: white;
+ padding: 30px;
+ border-radius: 12px;
+ box-shadow: 0 0 15px rgba(0,0,0,0.05);
+ margin-top: 40px;
+ display: none;
+ }
+ label {
+ display: block;
+ margin-top: 15px;
+ font-weight: bold;
+ }
+ input, textarea, select {
+ width: 100%;
+ padding: 12px;
+ margin-top: 5px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+ transition: border-color 0.2s ease;
+ font-size: 16px;
+ }
+ input:focus, textarea:focus, select:focus {
+ outline: none;
+ border-color: var(--accent-color);
+ box-shadow: 0 0 0 2px rgba(0, 115, 230, 0.2);
+ }
+ .checkbox {
+ margin-top: 15px;
+ }
+ .checkbox input[type="checkbox"] {
+ width: auto;
+ margin-right: 8px;
+ }
+ .checkbox label {
+ display: inline;
+ margin-top: 0;
+ }
+ .final-price {
+ text-align: center;
+ padding: 15px;
+ margin: 20px 0;
+ border-radius: 8px;
+ background: #d1f7d6;
+ color: #1d6b2f;
+ font-weight: bold;
+ }
+ button {
+ margin-top: 25px;
+ padding: 12px 24px;
+ background: var(--accent-color);
+ color: white;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ width: 100%;
+ font-size: 16px;
+ transition: background-color 0.2s ease;
+ }
+ button:hover,
+ button:focus {
+ background: var(--primary-color);
+ outline: 2px solid var(--primary-color);
+ outline-offset: 2px;
+ }
+ /* Accordion styles */
+ .accordion {
+ background: white;
+ border-radius: 12px;
+ box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+ overflow: hidden;
+ margin-bottom: 20px;
+ }
+ .accordion-item {
+ border-bottom: 1px solid var(--border-color);
+ }
+ .accordion-item:last-child {
+ border-bottom: none;
+ }
+ .accordion-header {
+ background: var(--white);
+ padding: 20px;
+ cursor: pointer;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ transition: background-color 0.2s ease;
+ font-weight: 600;
+ font-size: 1.1em;
+ }
+ .accordion-header:hover {
+ background: var(--hover-color);
+ }
+ .accordion-header:focus {
+ outline: 2px solid var(--accent-color);
+ outline-offset: -2px;
+ }
+ .accordion-icon {
+ width: 20px;
+ height: 20px;
+ transition: transform 0.2s ease;
+ flex-shrink: 0;
+ margin-left: 10px;
+ }
+ .accordion-item.active .accordion-icon {
+ transform: rotate(180deg);
+ }
+ .accordion-content {
+ max-height: 0;
+ overflow: hidden;
+ transition: max-height 0.3s ease;
+ }
+ .accordion-item.active .accordion-content {
+ max-height: 500px;
+ }
+ .accordion-body {
+ padding: 20px;
+ background: #fafbfc;
+ }
+ .terms-container {
+ background: white;
+ border-radius: 12px;
+ box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+ overflow: hidden;
+ }
+ .terms-header {
+ background: var(--primary-color);
+ color: white;
+ padding: 30px;
+ text-align: center;
+ }
+ .terms-header h2 {
+ color: white;
+ margin-bottom: 10px;
+ }
+ .terms-tabs {
+ display: flex;
+ background: #f8f9fa;
+ border-bottom: 1px solid var(--border-color);
+ }
+ .tab-button {
+ flex: 1;
+ padding: 15px 20px;
+ background: none;
+ border: none;
+ cursor: pointer;
+ font-size: 16px;
+ font-weight: 600;
+ color: var(--text-color);
+ transition: all 0.2s ease;
+ border-bottom: 3px solid transparent;
+ }
+ .tab-button.active {
+ background: white;
+ color: var(--primary-color);
+ border-bottom-color: var(--accent-color);
+ }
+ .tab-button:hover:not(.active) {
+ background: #e9ecef;
+ }
+ .tab-content {
+ display: none;
+ padding: 30px;
+ line-height: 1.8;
+ }
+ .tab-content.active {
+ display: block;
+ }
+ .tab-content h4 {
+ color: var(--primary-color);
+ font-size: 1.2em;
+ margin-top: 25px;
+ margin-bottom: 10px;
+ }
+ .mobile-faq-list {
+ display: none;
+ }
+ .mobile-terms-content {
+ display: none;
+ }
+ /* Facebook ikona */
+ .social-icon {
+ position: fixed;
+ bottom: 20px;
+ right: 20px;
+ width: 50px;
+ height: 50px;
+ background: #1877f2;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+ z-index: 1000;
+ text-decoration: none;
+ }
+ .social-icon:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+ }
+ .social-icon svg {
+ width: 24px;
+ height: 24px;
+ fill: white;
+ }
+ footer {
+ background: var(--primary-color);
+ color: var(--white);
+ text-align: center;
+ padding: 30px 20px;
+ margin-top: auto;
+ width: 100%;
+ }
+ footer a {
+ color: var(--white);
+ text-decoration: underline;
+ transition: opacity 0.2s ease;
+ }
+ footer a:hover,
+ footer a:focus {
+ opacity: 0.8;
+ }
+ /* ===== MOBILNÍ OPTIMALIZACE ===== */
+ @media (max-width: 768px) {
+ .language-switcher {
+ top: 10px;
+ right: 10px;
+ position: fixed;
+ }
+ .language-switcher button {
+ padding: 8px 12px;
+ font-size: 12px;
+ }
+ .hero-enhanced {
+ padding: 40px 10px 30px 10px;
+ min-height: auto;
+ height: auto;
+}
+ 
+ /* ÚPRAVA 5: Definitivní vycentrování nadpisu */
+ .hero-content {
+ max-width: 100% !important;
+ padding: 0 !important;
+ margin: 0 !important;
+ width: 100% !important;
+ display: flex !important;
+ flex-direction: column !important;
+ align-items: center !important;
+ }
+ .hero-title {
+ width: 100% !important;
+ text-align: center !important;
+ margin: 0 auto 30px auto !important;
+ }
+ 
+ .title-main {
+ font-size: 1.6em !important;
+ white-space: nowrap !important;
+ text-align: center !important;
+ width: 100% !important;
+ margin: 0 auto 10px auto !important;
+ display: block !important;
+ }
+ 
+ .title-subtitle {
+ font-size: 1.0em;
+ text-align: center !important;
+ width: 100% !important;
+ display: block !important;
+ }
+ 
+ .hero-description {
+ font-size: 1.05em;
+ line-height: 1.4;
+ margin-bottom: 30px;
+ padding: 0 10px;
+ text-align: center !important;
+ }
+ 
+ /* ÚPRAVA 2: Skrytí 3 bloků v mobilní verzi */
+ .hero-features {
+ display: none !important;
+ }
+ 
+ .hero-cta {
+ flex-direction: column;
+ align-items: center;
+ gap: 15px;
+ }
+ 
+ .cta-primary,
+ .cta-secondary {
+ width: 100%;
+ max-width: 280px;
+ text-align: center;
+ justify-content: center;
+ }
+ 
+ .nav-container {
+ flex-wrap: wrap;
+ justify-content: center;
+ }
+ 
+ .nav-item {
+ padding: 12px 16px;
+ font-size: 14px;
+ }
+ 
+ .nav-icon {
+ font-size: 14px;
+ }
+ 
+ .hero-shape {
+ display: none;
+ }
+ html, body {
+ height: auto !important;
+ min-height: 100vh !important;
+ overflow-x: hidden !important;
+ width: 100% !important;
+ }
+ body {
+ margin: 0 !important;
+ padding: 0 !important;
+ }
+ main {
+ min-height: auto !important;
+ height: auto !important;
+ width: 100%;
+ }
+ section {
+ min-height: auto !important;
+ height: auto !important;
+ padding: 30px 15px;
+ }
+ 
+ h2 {
+ font-size: 1.6em;
+ margin-bottom: 30px;
+ line-height: 1.3;
+ }
+ 
+ .steps, .options {
+ flex-direction: column;
+ gap: 15px;
+ }
+ 
+ /* ÚPRAVA 3: Zúžení rámečků kategorií o 35% */
+ .step, .option {
+ flex: 1 1 auto;
+ padding: 20px 10px; /* Změna z 20px 15px */
+ margin: 0 auto;
+ width: 90%; /* Zúžení šířky */
+ max-width: 320px; /* Maximální šířka */
+ }
+ 
+ .icon {
+ font-size: 32px;
+ margin-bottom: 10px;
+ }
+ 
+ form {
+ padding: 20px 15px;
+ margin-top: 25px;
+ }
+ 
+ .accordion {
+ display: none !important;
+ height: 0 !important;
+ margin: 0 !important;
+ padding: 0 !important;
+ }
+ 
+ .mobile-faq-list {
+ display: block;
+ background: white;
+ border-radius: 12px;
+ box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+ padding: 20px 15px;
+ margin: 0;
+ }
+ 
+ .mobile-faq-item {
+ margin-bottom: 20px;
+ padding-bottom: 15px;
+ border-bottom: 1px solid var(--border-color);
+ }
+ 
+ .mobile-faq-item:last-child {
+ border-bottom: none;
+ margin-bottom: 0;
+ padding-bottom: 0;
+ }
+ 
+ .mobile-faq-question {
+ font-weight: 600;
+ font-size: 1.05em;
+ color: var(--primary-color);
+ margin-bottom: 8px;
+ line-height: 1.4;
+ }
+ 
+ .mobile-faq-answer {
+ color: var(--text-color);
+ line-height: 1.6;
+ margin: 0;
+ }
+ 
+ .terms-tabs {
+ display: none !important;
+ }
+ 
+ .tab-content {
+ display: none !important;
+ }
+ 
+ .mobile-terms-content {
+ display: block;
+ padding: 20px 15px;
+ line-height: 1.7;
+ margin: 0;
+ }
+ 
+ .mobile-terms-content h4 {
+ color: var(--primary-color);
+ font-size: 1.1em;
+ margin-top: 20px;
+ margin-bottom: 8px;
+ line-height: 1.3;
+ }
+ 
+ .mobile-terms-content h4:first-child {
+ margin-top: 15px;
+ }
+ 
+ .mobile-section-divider {
+ height: 2px;
+ background: linear-gradient(to right, var(--accent-color), transparent);
+ margin: 25px 0 20px 0;
+ border-radius: 1px;
+ }
+ 
+ .mobile-terms-content p {
+ margin-bottom: 12px;
+ }
+ 
+ .mobile-terms-content ul {
+ margin-bottom: 15px;
+ padding-left: 20px;
+ }
+ 
+ .mobile-terms-content li {
+ margin-bottom: 8px;
+ line-height: 1.6;
+ }
+ 
+ .social-icon {
+ bottom: 15px;
+ right: 15px;
+ width: 45px;
+ height: 45px;
+ }
+ 
+ .social-icon svg {
+ width: 20px;
+ height: 20px;
+ }
+ }
+ @media (max-width: 480px) {
+ .title-main {
+ font-size: 1.4em !important;
+ white-space: nowrap !important;
+ }
+ 
+ .nav-container {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 1px;
+ }
+ 
+ .nav-item {
+ padding: 15px 10px;
+ text-align: center;
+ justify-content: center;
+ }
+ 
+ h2 {
+ font-size: 1.4em;
+ }
+ 
+ section {
+ padding: 25px 12px;
+ }
+ 
+ .icon {
+ font-size: 28px;
+ }
+ 
+ .step h3, .option h3 {
+ font-size: 1.15em;
+ }
+ 
+ form {
+ padding: 15px 12px;
+ }
+ 
+ .mobile-faq-list {
+ padding: 15px 12px;
+ }
+ 
+ .mobile-faq-question {
+ font-size: 1em;
+ }
+ 
+ .mobile-terms-content {
+ padding: 15px 12px;
+ }
+ 
+ .mobile-terms-content h4 {
+ font-size: 1.05em;
+ }
+ }
+ @media (min-width: 769px) {
+ body {
+ overflow-y: auto !important;
+ height: auto !important;
+ }
+ 
+ main {
+ min-height: auto !important;
+ height: auto !important;
+ }
+ }
+ </style>
+</head>
+<body>
+ <div class="language-switcher">
+        <button id="lang-cs" class="active" onclick="switchLanguage('cs')">
+            <span class="flag-icon">🇨🇿</span>
+            <span>ČR</span>
+        </button>
+        <button id="lang-ua" onclick="switchLanguage('ua')">
+            <span class="flag-icon">🇺🇦</span>
+            <span>UA</span>
+        </button>
+    </div>
+
+    <!-- HERO SEKCE -->
+    <div class="hero-enhanced">
+        <div class="hero-background">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+            <div class="hero-shape hero-shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-main" 
+                      data-cs="Dokumentuj" 
+                      data-ua="Документуй">Dokumentuj</span>
+                <span class="title-subtitle" 
+                      data-cs="Váš partner pro úřední dokumenty" 
+                      data-ua="Ваш партнер для офіційних документів">Váš partner pro úřední dokumenty</span>
+            </h1>
+            <p class="hero-description" 
+               data-cs="Neztrácejte čas a nervy s úředními výzvami. Připravíme za vás odpovědi, odvolání, žádosti nebo námitky – jednoduše, rychle a online." 
+               data-ua="Не витрачайте час і нерви на офіційні виклики. Підготуємо за вас відповіді, апеляції, заяви або заперечення – просто, швидко та онлайн.">
+                Neztrácejte čas a nervy s úředními výzvami. Připravíme za vás odpovědi, odvolání, žádosti nebo námitky – jednoduše, rychle a online.
+            </p>
+            <div class="hero-features">
+                <div class="feature-item">
+                    <div class="feature-circle">
+                        <span class="feature-icon">⚡</span>
+                    </div>
+                    <span class="feature-text" 
+                          data-cs="Do 48 hodin" 
+                          data-ua="До 48 годин">Do 48 hodin</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-circle">
+                        <span class="feature-icon">💰</span>
+                    </div>
+                    <span class="feature-text" 
+                          data-cs="Od 199 Kč" 
+                          data-ua="Від 199 крон">Od 199 Kč</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-circle">
+                        <span class="feature-icon">🏠</span>
+                    </div>
+                    <span class="feature-text" 
+                          data-cs="Z domova" 
+                          data-ua="З дому">Z domova</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#wizard" class="cta-primary">
+                    <span data-cs="Spustit průvodce" data-ua="Запустити помічника">Spustit průvodce</span>
+                    <span class="cta-arrow">→</span>
+                </a>
+                <a href="#jak" class="cta-secondary" 
+                   data-cs="Jak to funguje" 
+                   data-ua="Як це працює">Jak to funguje</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- WIZARD SEKCE -->
+    <section id="wizard" class="wizard-container hidden">
+        <div class="wizard-header">
+            <h2 data-cs="Průvodce výběrem dokumentu" data-ua="Помічник вибору документа">Průvodce výběrem dokumentu</h2>
+            <div class="wizard-progress">
+                <div class="progress-step active" id="step1-indicator">1</div>
+                <div class="progress-step" id="step2-indicator">2</div>
+                <div class="progress-step" id="step3-indicator">3</div>
+                <div class="progress-step" id="step4-indicator">4</div>
+            </div>
+        </div>
+        <div class="wizard-content">
+            <!-- KROK 1: Základní situace -->
+            <div class="wizard-step active" id="wizard-step-1">
+                <h3 class="wizard-question" data-cs="V jaké situaci se nacházíte?" data-ua="У якій ситуації ви перебуваєте?">V jaké situaci se nacházíte?</h3>
+                <div class="wizard-options">
+                    <div class="wizard-option" data-value="obdrzel" onclick="selectWizardOption(this, 1)">
+                        <div class="option-icon">📨</div>
+                        <strong data-cs="Obdržel jsem dokument" data-ua="Я отримав документ">Obdržel jsem dokument</strong>
+                        <p data-cs="Od úřadu, soudu, exekutora nebo jiné instituce" data-ua="Від органу влади, суду, виконавця або іншої установи">Od úřadu, soudu, exekutora nebo jiné instituce</p>
+                    </div>
+                    <div class="wizard-option" data-value="chci_vyridit" onclick="selectWizardOption(this, 1)">
+                        <div class="option-icon">✍</div>
+                        <strong data-cs="Chci něco vyřídit" data-ua="Я хочу щось вирішити">Chci něco vyřídit</strong>
+                        <p data-cs="Potřebuji požádat úřad o něco konkrétního" data-ua="Мені потрібно попросити орган влади про щось конкретне">Potřebuji požádat úřad o něco konkrétního</p>
+                    </div>
+                    <div class="wizard-option" data-value="mam_problem" onclick="selectWizardOption(this, 1)">
+                        <div class="option-icon">⚠</div>
+                        <strong data-cs="Mám problém" data-ua="У мене проблема">Mám problém</strong>
+                        <p data-cs="Něco se pokazilo a potřebuji se bránit" data-ua="Щось пішло не так і мені потрібно захищатися">Něco se pokazilo a potřebuji se bránit</p>
+                    </div>
+                    <div class="wizard-option" data-value="nevim" onclick="selectWizardOption(this, 1)">
+                        <div class="option-icon">❓</div>
+                        <strong data-cs="Nevím co přesně" data-ua="Я не знаю точно">Nevím co přesně</strong>
+                        <p data-cs="Potřebuji poradit co mám dělat" data-ua="Мені потрібна порада, що робити">Potřebuji poradit co mám dělat</p>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button class="wizard-btn secondary" onclick="hideWizard()" data-cs="Zrušit" data-ua="Скасувати">Zrušit</button>
+                    <button class="wizard-btn primary" id="next-btn-1" disabled onclick="nextWizardStep(2)" data-cs="Další" data-ua="Далі">Další</button>
+                </div>
+            </div>
+
+            <!-- KROK 2A: Obdržel jsem dokument -->
+            <div class="wizard-step" id="wizard-step-2a" style="display: none;">
+                <h3 class="wizard-question" data-cs="Jaký dokument jste obdrželi?" data-ua="Який документ ви отримали?">Jaký dokument jste obdrželi?</h3>
+                <div class="wizard-options">
+                    <div class="wizard-option" data-value="pokuta" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">🚔</div>
+                        <strong data-cs="Pokuta" data-ua="Штраф">Pokuta</strong>
+                        <p data-cs="Dopravní, správní nebo jiná pokuta" data-ua="Штраф за порушення ПДР, адміністративний або інший">Dopravní, správní nebo jiná pokuta</p>
+                    </div>
+                    <div class="wizard-option" data-value="exekuce" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">⚖</div>
+                        <strong data-cs="Exekuční příkaz" data-ua="Виконавчий наказ">Exekuční příkaz</strong>
+                        <p data-cs="Od exekutora nebo soudu" data-ua="Від виконавця або суду">Od exekutora nebo soudu</p>
+                    </div>
+                    <div class="wizard-option" data-value="rozhodnuti" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">📋</div>
+                        <strong data-cs="Rozhodnutí úřadu" data-ua="Рішення органу влади">Rozhodnutí úřadu</strong>
+                        <p data-cs="Úřad práce, finanční úřad, obecní úřad..." data-ua="Служба зайнятості, фінансовий орган, муніципалітет...">Úřad práce, finanční úřad, obecní úřad...</p>
+                    </div>
+                    <div class="wizard-option" data-value="vyzva" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">📞</div>
+                        <strong data-cs="Výzva k jednání" data-ua="Виклик до дії">Výzva k jednání</strong>
+                        <p data-cs="Mám se někam dostavit nebo něco doložit" data-ua="Я маю кудись з'явитися або щось довести">Mám se někam dostavit nebo něco doložit</p>
+                    </div>
+                    <div class="wizard-option" data-value="soudni" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">🏛</div>
+                        <strong data-cs="Soudní dokument" data-ua="Судовий документ">Soudní dokument</strong>
+                        <p data-cs="Žaloba, usnesení, rozsudek..." data-ua="Позов, ухвала, рішення суду...">Žaloba, usnesení, rozsudek...</p>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button class="wizard-btn secondary" onclick="prevWizardStep(1)" data-cs="Zpět" data-ua="Назад">Zpět</button>
+                    <button class="wizard-btn primary" id="next-btn-2a" disabled onclick="nextWizardStep(3)" data-cs="Další" data-ua="Далі">Další</button>
+                </div>
+            </div>
+
+            <!-- KROK 2B: Chci něco vyřídit -->
+            <div class="wizard-step" id="wizard-step-2b" style="display: none;">
+                <h3 class="wizard-question" data-cs="Co potřebujete vyřídit?" data-ua="Що вам потрібно вирішити?">Co potřebujete vyřídit?</h3>
+                <div class="wizard-options">
+                    <div class="wizard-option" data-value="davky" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">💰</div>
+                        <strong data-cs="Sociální dávky" data-ua="Соціальні виплати">Sociální dávky</strong>
+                        <p data-cs="Příspěvek na bydlení, hmotná nouze, přídavky..." data-ua="Допомога на житло, матеріальна допомога, надбавки...">Příspěvek na bydlení, hmotná nouze, přídavky...</p>
+                    </div>
+                    <div class="wizard-option" data-value="prace" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">👔</div>
+                        <strong data-cs="Pracovní záležitosti" data-ua="Робочі питання">Pracovní záležitosti</strong>
+                        <p data-cs="Nezaměstnanost, rekvalifikace, pracovní spory..." data-ua="Безробіття, перекваліфікація, трудові спори...">Nezaměstnanost, rekvalifikace, pracovní spory...</p>
+                    </div>
+                    <div class="wizard-option" data-value="zdravi" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">🏥</div>
+                        <strong data-cs="Zdravotní pojištění" data-ua="Медичне страхування">Zdravotní pojištění</strong>
+                        <p data-cs="Invalidní důchod, posudek, odvolání..." data-ua="Пенсія по інвалідності, висновок, апеляція...">Invalidní důchod, posudek, odvolání...</p>
+                    </div>
+                    <div class="wizard-option" data-value="bydleni" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">🏠</div>
+                        <strong data-cs="Bydlení" data-ua="Житло">Bydlení</strong>
+                        <p data-cs="Výpověď nájmu, reklamace, sousedské spory..." data-ua="Розірвання оренди, рекламації, сусідські спори...">Výpověď nájmu, reklamace, sousedské spory...</p>
+                    </div>
+                    <div class="wizard-option" data-value="dane" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">📊</div>
+                        <strong data-cs="Daně a poplatky" data-ua="Податки та збори">Daně a poplatky</strong>
+                        <p data-cs="Daňové přiznání, splátkový kalendář..." data-ua="Податкова декларація, графік розстрочки...">Daňové přiznání, splátkový kalendář...</p>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button class="wizard-btn secondary" onclick="prevWizardStep(1)" data-cs="Zpět" data-ua="Назад">Zpět</button>
+                    <button class="wizard-btn primary" id="next-btn-2b" disabled onclick="nextWizardStep(3)" data-cs="Další" data-ua="Далί">Další</button>
+                </div>
+            </div>
+
+            <!-- KROK 2C: Mám problém -->
+            <div class="wizard-step" id="wizard-step-2c" style="display: none;">
+                <h3 class="wizard-question" data-cs="Jaký máte problém?" data-ua="Яка у вас проблема?">Jaký máte problém?</h3>
+                <div class="wizard-options">
+                    <div class="wizard-option" data-value="nespravedlive" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">😠</div>
+                        <strong data-cs="Nespravedlivé rozhodnutí" data-ua="Несправедливе рішення">Nespravedlivé rozhodnutí</strong>
+                        <p data-cs="Úřad rozhodl špatně, chci se odvolat" data-ua="Орган влади прийняв неправильне рішення, я хочу оскаржити">Úřad rozhodl špatně, chci se odvolat</p>
+                    </div>
+                    <div class="wizard-option" data-value="diskriminace" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">⚡</div>
+                        <strong data-cs="Špatné zacházení" data-ua="Погане поводження">Špatné zacházení</strong>
+                        <p data-cs="Diskriminace, šikana, neprofesionální chování" data-ua="Дискримінація, цькування, непрофесійна поведінка">Diskriminace, šikana, neprofesionální chování</p>
+                    </div>
+                    <div class="wizard-option" data-value="dluh" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">💸</div>
+                        <strong data-cs="Nemohu zaplatit" data-ua="Я не можу заплатити">Nemohu zaplatit</strong>
+                        <p data-cs="Dluh, pokuta, exekuce - nemám peníze" data-ua="Борг, штраф, виконання - у мене немає грошей">Dluh, pokuta, exekuce - nemám peníze</p>
+                    </div>
+                    <div class="wizard-option" data-value="chyba" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">❌</div>
+                        <strong data-cs="Úřední chyba" data-ua="Службова помилка">Úřední chyba</strong>
+                        <p data-cs="Úřad udělal chybu v datech, výpočtech..." data-ua="Орган влади зробив помилку в даних, розрахунках...">Úřad udělal chybu v datech, výpočtech...</p>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button class="wizard-btn secondary" onclick="prevWizardStep(1)" data-cs="Zpět" data-ua="Назад">Zpět</button>
+                    <button class="wizard-btn primary" id="next-btn-2c" disabled onclick="nextWizardStep(3)" data-cs="Další" data-ua="Далί">Další</button>
+                </div>
+            </div>
+
+            <!-- KROK 2D: Nevím co přesně -->
+            <div class="wizard-step" id="wizard-step-2d" style="display: none;">
+                <h3 class="wizard-question" data-cs="Popište stručně vaši situaci:" data-ua="Коротко опишіть вашу ситуацію:">Popište stručně vaši situaci:</h3>
+                <div class="wizard-options">
+                    <div class="wizard-option" data-value="financni" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">💰</div>
+                        <strong data-cs="Finanční potíže" data-ua="Фінансові проблеми">Finanční potíže</strong>
+                        <p data-cs="Nemám peníze na základní potřeby" data-ua="У мене немає грошей на основні потреби">Nemám peníze na základní potřeby</p>
+                    </div>
+                    <div class="wizard-option" data-value="zdravotni" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">🏥</div>
+                        <strong data-cs="Zdravotní problémy" data-ua="Проблеми зі здоров'ям">Zdravotní problémy</strong>
+                        <p data-cs="Nemohu pracovat kvůli nemoci" data-ua="Я не можу працювати через хворобу">Nemohu pracovat kvůli nemoci</p>
+                    </div>
+                    <div class="wizard-option" data-value="rodinne" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">👨‍👩‍👧‍👦</div>
+                        <strong data-cs="Rodinné problémy" data-ua="Сімейні проблеми">Rodinné problémy</strong>
+                        <p data-cs="Rozvod, výživné, opatrovnictví..." data-ua="Розлучення, аліменти, опіка...">Rozvod, výživné, opatrovnictví...</p>
+                    </div>
+                    <div class="wizard-option" data-value="obecne" onclick="selectWizardOption(this, 2)">
+                        <div class="option-icon">❓</div>
+                        <strong data-cs="Něco jiného" data-ua="Щось інше">Něco jiného</strong>
+                        <p data-cs="Nevím, do které kategorie to patří" data-ua="Я не знаю, до якої категорії це належить">Nevím, do které kategorie to patří</p>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button class="wizard-btn secondary" onclick="prevWizardStep(1)" data-cs="Zpět" data-ua="Назад">Zpět</button>
+                    <button class="wizard-btn primary" id="next-btn-2d" disabled onclick="nextWizardStep(3)" data-cs="Další" data-ua="Далί">Další</button>
+                </div>
+            </div>
+
+            <!-- KROK 3: Co chcete udělat -->
+            <div class="wizard-step" id="wizard-step-3" style="display: none;">
+                <h3 class="wizard-question" id="step3-question">Co chcete udělat?</h3>
+                <div class="wizard-options" id="step3-options">
+                    <!-- Dynamicky generováno -->
+                </div>
+                <div class="wizard-buttons">
+                    <button class="wizard-btn secondary" onclick="prevWizardStep(2)" data-cs="Zpět" data-ua="Назад">Zpět</button>
+                    <button class="wizard-btn primary" id="next-btn-3" disabled onclick="nextWizardStep(4)" data-cs="Další" data-ua="Далί">Další</button>
+                </div>
+            </div>
+
+            <!-- KROK 4: Urgence a finalizace -->
+            <div class="wizard-step" id="wizard-step-4" style="display: none;">
+                <h3 class="wizard-question" data-cs="Jak rychle to potřebujete?" data-ua="Як швидко вам це потрібно?">Jak rychle to potřebujete?</h3>
+                <div class="wizard-options">
+                    <div class="wizard-option" data-value="standard" onclick="selectWizardOption(this, 4)">
+                        <div class="option-icon">📅</div>
+                        <strong data-cs="Standardní (do 48 hodin)" data-ua="Стандартно (до 48 годин)">Standardní (do 48 hodin)</strong>
+                        <p data-cs="Základní cena" data-ua="Базова ціна">Základní cena</p>
+                    </div>
+                    <div class="wizard-option" data-value="express" onclick="selectWizardOption(this, 4)">
+                        <div class="option-icon">⚡</div>
+                        <strong data-cs="Expresní (do 24 hodin)" data-ua="Експрес (до 24 годин)">Expresní (do 24 hodin)</strong>
+                        <p data-cs="+100 Kč za rychlost" data-ua="+100 крон за швидкість">+100 Kč za rychlost</p>
+                    </div>
+                    <div class="wizard-option" data-value="urgent" onclick="selectWizardOption(this, 4)">
+                        <div class="option-icon">🚨</div>
+                        <strong data-cs="Urgentní (do 12 hodin)" data-ua="Терміново (до 12 годин)">Urgentní (do 12 hodin)</strong>
+                        <p data-cs="+200 Kč za urgenci" data-ua="+200 крон за терміновість">+200 Kč za urgenci</p>
+                    </div>
+                </div>
+                <div class="wizard-summary" id="wizard-summary">
+                    <!-- Shrnutí voleb -->
+                </div>
+                <div class="wizard-buttons">
+                    <button class="wizard-btn secondary" onclick="prevWizardStep(3)" data-cs="Zpět" data-ua="Назад">Zpět</button>
+                    <button class="wizard-btn primary" id="finish-btn" disabled onclick="finishWizard()" data-cs="Pokračovat k objednávce" data-ua="Продовжити до замовлення">Pokračovat k objednávce</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NAVIGACE -->
+    <nav class="nav-enhanced" role="navigation">
+        <div class="nav-container">
+            <a href="#jak" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                <span data-cs="Jak to funguje" data-ua="Як це працює">Jak to funguje</span>
+            </a>
+            <a href="#objednavka" class="nav-item">
+                <span class="nav-icon">📄</span>
+                <span data-cs="Objednat dokument" data-ua="Замовити документ">Objednat dokument</span>
+            </a>
+            <a href="#faq" class="nav-item">
+                <span class="nav-icon">❓</span>
+                <span data-cs="FAQ / Návod" data-ua="FAQ / Інструкція">FAQ / Návod</span>
+            </a>
+            <a href="#obchodni-podminky" class="nav-item">
+                <span class="nav-icon">📋</span>
+                <span data-cs="Obchodní podmínky" data-ua="Умови надання послуг">Obchodní podmínky</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Facebook ikona -->
+    <a href="https://www.facebook.com/profile.php?id=61575055568461" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Sledujte nás na Facebooku">
+        <svg viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+    </a>
+
+    <main>
+        <section id="jak">
+            <h2 data-cs="Jak to funguje" data-ua="Як це працює">Jak to funguje</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="icon" role="img" aria-label="Ikona dokumentu">📝</div>
+                    <h3 data-cs="1. Vyplníte formulář" data-ua="1. Заповнюєте форму">1. Vyplníte formulář</h3>
+                    <p data-cs="Vyberete typ dokumentu, popíšete situaci a <strong>přiložíte fotografii nebo sken</strong>" 
+                       data-ua="Обираєте тип документа, описуєте ситуацію та <strong>прикладаєте фотографію або скан</strong>">
+                        Vyberete typ dokumentu, popíšete situaci a <strong>přiložíte fotografii nebo sken</strong>
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="icon" role="img" aria-label="Ikona oka">👁</div>
+                    <h3 data-cs="2. Obdržíte náhled" data-ua="2. Отримуєте попередній перегляд">2. Obdržíte náhled</h3>
+                    <p data-cs="Do 48 hodin vám pošleme <strong>náhled dokumentu</strong> s vodoznakem<strong> nebo skrytými částmi.</strong>" 
+                       data-ua="Протягом 48 годин надішлемо вам <strong>попередній перегляд документа</strong> з водяним знаком<strong> або прихованими частинами.</strong>">
+                        Do 48 hodin vám pošleme <strong>náhled dokumentu</strong> s vodoznakem<strong> nebo skrytými částmi.</strong>
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="icon" role="img" aria-label="Ikona platební karty">💳</div>
+                    <h3 data-cs="3. Zaplatíte a dostanete originál" data-ua="3. Сплачуєte і отримуєte оригінал">3. Zaplatíte a dostanete originál</h3>
+                    <p data-cs="<strong>Po platbě vám obratem zašleme plnou verzi</strong> připravenou k odeslání." 
+                       data-ua="<strong>Після оплати негайно надішлемо повну версію</strong> готову для відправлення.">
+                        <strong>Po platbě vám obratem zašleme plnou verzi</strong> připravenou k odeslání.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="objednavka">
+            <h2 data-cs="Vyberte typ dokumentu" data-ua="Оберіть тип документа">Vyberte typ dokumentu</h2>
+            <div class="options">
+                <div class="option" tabindex="0" role="button" aria-describedby="simple-desc" onclick="selectOption(this, 'Jednoduchá odpověď', 199)" onkeydown="handleKeyPress(event, this, 'Jednoduchá odpověď', 199)">
+                    <div class="icon" role="img" aria-label="Ikona dokumentu">📄</div>
+                    <h3 data-cs="Jednoduchá odpověď" data-ua="Проста відповідь">Jednoduchá odpověď</h3>
+                    <p id="simple-desc" 
+                       data-cs="Reakce na úřední výzvu • Žádost o splátkový kalendář • Požadavek na odklad lhůty • Žádost o mimořádnou okamžitou pomoc (MOP) • Základní komunikace s úřady" 
+                       data-ua="Відповідь на офіційний виклик • Заява про графік розстрочки • Запит на відстрочку терміну • Заява про надзвичайну негайну допомогу (ННД) • Базова комунікація з органами влади">
+                        Reakce na úřední výzvu • Žádost o splátkový kalendář • Požadavek na odklad lhůty • Žádost o mimořádnou okamžitou pomoc (MOP) • Základní komunikace s úřady
+                    </p>
+                </div>
+                <div class="option" tabindex="0" role="button" aria-describedby="appeal-desc" onclick="selectOption(this, 'Odvolání / Námitka', 399)" onkeydown="handleKeyPress(event, this, 'Odvolání / Námitka', 399)">
+                    <div class="icon" role="img" aria-label="Ikona vah spravedlnosti">⚖</div>
+                    <h3 data-cs="Odvolání / Námitka" data-ua="Апеляція / Заперечення">Odvolání / Námitka</h3>
+                    <p id="appeal-desc" 
+                       data-cs="Odvolání proti úřednímu rozhodnutí • Námitka proti exekučnímu příkazu nebo výzvě • Odvolání proti soudnímu verdiktu • Námitka proti pokutě nebo platebnímu výměru • Právní prostředky proti nesprávným rozhodnutím" 
+                       data-ua="Апеляція проти офіційного рішення • Заперечення проти виконавчого наказу або вимоги • Апеляція проти судового вердикту • Заперечення проти штрафу або платіжної вимоги • Правові засоби проти неправильних рішень">
+                        Odvolání proti úřednímu rozhodnutí • Námitka proti exekučnímu příkazu nebo výzvě • Odvolání proti soudnímu verdiktu • Námitka proti pokutě nebo platebnímu výměru • Právní prostředky proti nesprávným rozhodnutím
+                    </p>
+                </div>
+                <div class="option" tabindex="0" role="button" aria-describedby="request-desc" onclick="selectOption(this, 'Žádost nebo stížnost', 299)" onkeydown="handleKeyPress(event, this, 'Žádost nebo stížnost', 299)">
+                    <div class="icon" role="img" aria-label="Ikona pera">🖋</div>
+                    <h3 data-cs="Žádost nebo stížnost" data-ua="Заява або скарга">Žádost nebo stížnost</h3>
+                    <p id="request-desc" 
+                       data-cs="Stížnost na postup nebo chování úředníka • Stížnost na podmínky v ubytovně nebo sociálním bydlení • Stížnost na rozhodnutí Úřadu práce • Žádost o přidělení obecního nebo sociálního bytu • Formální podání k ochraně vašich práv" 
+                       data-ua="Скарга на процедуру або поведінку чиновника • Скарга на умови в гуртожитку або соціальному житлі • Скарга на рішення Служби зайнятості • Заява про виділення муніципального або соціального житла • Формальне звернення для захисту ваших прав">
+                        Stížnost na postup nebo chování úředníka • Stížnost na podmínky v ubytovně nebo sociálním bydlení • Stížnost na rozhodnutí Úřadu práce • Žádost o přidělení obecního nebo sociálního bytu • Formální podání k ochraně vašich práv
+                    </p>
+                </div>
+            </div>
+            <div class="price-info" id="priceInfo" 
+                 data-cs="Zvolte typ dokumentu pro zobrazení ceny." 
+                 data-ua="Оберіть тип документа для відображення ціни.">
+                Zvolte typ dokumentu pro zobrazení ceny.
+            </div>
+            <form id="docForm" action="https://formspree.io/f/mgvarnna" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_redirect" value="https://dokumentuj.cz/dekujeme.html">
+                <input type="hidden" id="typDokumentu" name="typ_dokumentu">
+                <input type="hidden" id="zakladniCena" name="zakladni_cena">
+                <label for="name" data-cs="Jméno a příjmení:" data-ua="Ім'я та прізвище:">Jméno a příjmení:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email" data-cs="E-mail:" data-ua="Електронна пошта:">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="popis" data-cs="Popište svou situaci:" data-ua="Опишіть свою ситуацію:">Popište svou situaci:</label>
+                <textarea id="popis" name="popis" rows="4" required></textarea>
+                <label for="soubor" data-cs="Přiložte dokument (foto, scan, PDF):" data-ua="Прикладіть документ (фото, скан, PDF):">Přiložte dokument (foto, scan, PDF):</label>
+                <input type="file" id="soubor" name="soubor" accept=".jpg,.jpeg,.png,.pdf" required>
+                <div class="checkbox" id="expresni-checkbox">
+                    <input type="checkbox" id="expres" onchange="updateCena()">
+                    <label for="expres" data-cs="Expresní vyřízení <strong>do 24 hodin</strong> (+100 Kč)" data-ua="Експрес-обробка <strong>до 24 годин</strong> (+100 крон)">Expresní vyřízení <strong>do 24 hodin</strong> (+100 Kč)</label>
+                </div>
+                <div class="checkbox" id="urgentni-checkbox">
+                    <input type="checkbox" id="urgent" onchange="updateCena()">
+                    <label for="urgent" data-cs="Urgentní vyřízení <strong>do 12 hodin</strong> (+200 Kč)" data-ua="Терміново <strong>до 12 годин</strong> (+200 крон)">Urgentní vyřízení <strong>do 12 hodin</strong> (+200 Kč)</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="souhlas" required>
+                    <label for="souhlas">
+                        <span data-cs="Souhlasím s " data-ua="Погоджуюся з ">Souhlasím s </span>
+                        <a href="#obchodni-podminky" data-cs="obchodními podmínkami" data-ua="умовами надання послуг">obchodními podmínkami</a>
+                    </label>
+                </div>
+                <div class="final-price" id="finalPrice" 
+                     data-cs="Celková cena: 0 Kč" 
+                     data-ua="Загальна ціна: 0 крон">Celková cena: 0 Kč</div>
+                <button type="submit" data-cs="Odeslat poptávku" data-ua="Надіслати запит">Odeslat poptávku</button>
+            </form>
+        </section>
+
+        <section id="faq">
+            <h2 data-cs="Nejčastější dotazy (FAQ / Návod)" data-ua="Найчастіші питання (FAQ / Інструкція)">Nejčastější dotazy (FAQ / Návod)</h2>
+            <!-- Desktop accordion -->
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Co přesně nabízíte?" data-ua="Що саме ви пропонуєте?">Co přesně nabízíte?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Pomůžeme vám napsat oficiální odpověď na úřední dopis, výzvu, rozhodnutí nebo žádost." 
+                             data-ua="Допоможемо вам написати офіційну відповідь на офіційний лист, виклик, рішення або заяву.">
+                            Pomůžeme vám napsat oficiální odpověď na úřední dopis, výzvu, rozhodnutí nebo žádost.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Musím někam chodit osobně?" data-ua="Чи потрібно кудись йти особисто?">Musím někam chodit osobně?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Ne. Vše vyřešíte z domova – <strong>online nebo přes telefon</strong>." 
+                             data-ua="Ні. Все вирішите з дому – <strong>онлайн або по телефону</strong>.">
+                            Ne. Vše vyřešíte z domova – <strong>online nebo přes telefon</strong>.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Jak vám pošlu svůj dopis?" data-ua="Як надіслати вам свого листа?">Jak vám pošlu svůj dopis?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Stačí ho <strong>vyfotit nebo naskenovat</strong> a nahrát ve formuláři na stránce." 
+                             data-ua="Достатньо <strong>сфотографувати або відсканувати</strong> та завантажити у формі на сторінці.">
+                            Stačí ho <strong>vyfotit nebo naskenovat</strong> a nahrát ve formuláři na stránce.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Kolik mě to bude stát?" data-ua="Скільки це буде коштувати?">Kolik mě to bude stát?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Cena se zobrazí hned po výběru typu dokumentu. Nejčastěji <strong>199–399 Kč</strong>." 
+                             data-ua="Ціна відобразиться відразу після вибору типу документа. Найчастіше <strong>199–399 крон</strong>.">
+                            Cena se zobrazí hned po výběru typu dokumentu. Nejčastěji <strong>199–399 Kč</strong>.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Musím platit předem?" data-ua="Чи потрібно платити наперед?">Musím platit předem?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Ne. Nejprve dostanete <strong>náhled dokumentu</strong>. Platíte až po jeho schválení." 
+                             data-ua="Ні. Спочатку отримаєте <strong>попередній перегляд документа</strong>. Платите лише після його схвалення.">
+                            Ne. Nejprve dostanete <strong>náhled dokumentu</strong>. Platíte až po jeho schválení.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Co znamená náhled s vodoznakem?" data-ua="Що означає попередній перегляд з водяним знаком?">Co znamená náhled s vodoznakem?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Je to ukázka dokumentu se zakrytými částmi nebo nápisem, že ještě není zaplaceno." 
+                             data-ua="Це зразок документа з прихованими частинами або написом, що ще не сплачено.">
+                            Je to ukázka dokumentu se zakrytými částmi nebo nápisem, že ještě není zaplaceno.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Jak rychle odpověď dostanu?" data-ua="Як швидко отримаю відповідь?">Jak rychle odpověď dostanu?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Standardně <strong>do 48 hodin</strong>. Můžete si připlatit za expresní zpracování (<strong>do 24 hodin</strong>)." 
+                             data-ua="Стандартно <strong>до 48 годин</strong>. Можете доплатити за експрес-обробку (<strong>до 24 годин</strong>).">
+                            Standardně <strong>do 48 hodin</strong>. Můžete si připlatit za expresní zpracování (<strong>do 24 hodin</strong>).
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Jak zaplatím?" data-ua="Як платити?">Jak zaplatím?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Přes <strong>QR kód</strong> nebo <strong>převodem</strong>. Po zaplacení dostanete plnou verzi dokumentu." 
+                             data-ua="Через <strong>QR код</strong> або <strong>переказом</strong>. Після оплати отримаєте повну версію документа.">
+                            Přes <strong>QR kód</strong> nebo <strong>převodem</strong>. Po zaplacení dostanete plnou verzi dokumentu.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Můžete mi i poradit, co napsat?" data-ua="Чи можете порадити, що написати?">Můžete mi i poradit, co napsat?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="Ano, pokud nevíte přesně co potřebujete, napište nám situaci – <strong>zpracujeme návrh za vás</strong>." 
+                             data-ua="Так, якщо не знаєте точно, що потрібно, напишіть нам ситуацію – <strong>опрацюємо пропозицію за вас</strong>.">
+                            Ano, pokud nevíte přesně co potřebujete, napište nám situaci – <strong>zpracujeme návrh za vás</strong>.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" tabindex="0" onclick="toggleAccordion(this)" onkeydown="handleAccordionKey(event, this)">
+                        <span data-cs="Co když udělám chybu nebo něco zapomenu?" data-ua="Що якщо зроблю помилку або щось забуду?">Co když udělám chybu nebo něco zapomenu?</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" 
+                             data-cs="<strong>Opravíme to</strong>. Stačí nám napsat – vše ladíme, dokud nejste spokojeni." 
+                             data-ua="<strong>Виправимо це</strong>. Достатньо нам написати – все налаштовуємо, поки не будете задоволені.">
+                            <strong>Opravíme to</strong>. Stačí nám napsat – vše ladíme, dokud nejste spokojeni.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile FAQ list -->
+            <div class="mobile-faq-list">
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Co přesně nabízíte?" data-ua="Що саме ви пропонуєте?">Co přesně nabízíte?</div>
+                    <div class="mobile-faq-answer" data-cs="Pomůžeme vám napsat oficiální odpověď na úřední dopis, výzvu, rozhodnutí nebo žádost." data-ua="Допоможемо вам написати офіційну відповідь на офіційний лист, виклик, рішення або заяву.">Pomůžeme vám napsat oficiální odpověď na úřední dopis, výzvu, rozhodnutí nebo žádost.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Musím někam chodit osobně?" data-ua="Чи потрібно кудись йти особисто?">Musím někam chodit osobně?</div>
+                    <div class="mobile-faq-answer" data-cs="Ne. Vše vyřešíte z domova – <strong>online nebo přes telefon</strong>." data-ua="Ні. Все вирішите з дому – <strong>онлайн або по телефону</strong>.">Ne. Vše vyřešíte z domova – <strong>online nebo přes telefon</strong>.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Jak vám pošlu svůj dopis?" data-ua="Як надіслати вам свого листа?">Jak vám pošlu svůj dopis?</div>
+                    <div class="mobile-faq-answer" data-cs="Stačí ho <strong>vyfotit nebo naskenovat</strong> a nahrát ve formuláři na stránce." data-ua="Достатньо <strong>сфотографувати або відсканувати</strong> та завантажити у формі на сторінці.">Stačí ho <strong>vyfotit nebo naskenovat</strong> a nahrát ve formuláři na stránce.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Kolik mě to bude stát?" data-ua="Скільки це буде коштувати?">Kolik mě to bude stát?</div>
+                    <div class="mobile-faq-answer" data-cs="Cena se zobrazí hned po výběru typu dokumentu. Nejčastěji <strong>199–399 Kč</strong>." data-ua="Ціна відобразиться відразу після вибору типу документa. Найчастіше <strong>199–399 крон</strong>.">Cena se zobrazí hned po výběru typu dokumentu. Nejčastěji <strong>199–399 Kč</strong>.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Musím platit předem?" data-ua="Чи потрібно платити наперед?">Musím platit předem?</div>
+                    <div class="mobile-faq-answer" data-cs="Ne. Nejprve dostanete <strong>náhled dokumentu</strong>. Platíte až po jeho schválení." data-ua="Ні. Спочатку отримаєте <strong>попередній перегляд документа</strong>. Платите лише після його схвалення.">Ne. Nejprve dostanete <strong>náhled dokumentu</strong>. Platíte až po jeho schválení.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Co znamená náhled s vodoznakem?" data-ua="Що означає попередній перегляд з водяним знаком?">Co znamená náhled s vodoznakem?</div>
+                    <div class="mobile-faq-answer" data-cs="Je to ukázka dokumentu se zakrytými částmi nebo nápisem, že ještě není zaplaceno." data-ua="Це зразок документa з прихованими частинами або написом, що ще не сплачено.">Je to ukázka dokumentu se zakrytými částmi nebo nápisem, že ještě není zaplaceno.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Jak rychle odpověď dostanu?" data-ua="Як швидко отримаю відповідь?">Jak rychle odpověď dostanu?</div>
+                    <div class="mobile-faq-answer" data-cs="Standardně <strong>do 48 hodin</strong>. Můžete si připlatit za expresní zpracování (<strong>do 24 hodin</strong>)." data-ua="Стандартно <strong>до 48 годин</strong>. Можете доплатити за експрес-обробку (<strong>до 24 годин</strong>).">Standardně <strong>do 48 hodin</strong>. Můžete si připlatit za expresní zpracování (<strong>do 24 hodin</strong>).</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Jak zaplatím?" data-ua="Як платити?">Jak zaplatím?</div>
+                    <div class="mobile-faq-answer" data-cs="Přes <strong>QR kód</strong> nebo <strong>převodem</strong>. Po zaplacení dostanete plnou verzi dokumentu." data-ua="Через <strong>QR код</strong> nebo <strong>переказом</strong>. Після оплати отримаєte повну версію документa.">Přes <strong>QR kód</strong> nebo <strong>převodem</strong>. Po zaplacení dostanete plnou verzi dokumentu.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Můžete mi i poradit, co napsat?" data-ua="Чи можете порадити, що написати?">Můžete mi i poradit, co napsat?</div>
+                    <div class="mobile-faq-answer" data-cs="Ano, pokud nevíte přesně co potřebujete, napište nám situaci – <strong>zpracujeme návrh za vás</strong>." data-ua="Так, якщо не знаєте точно, що потрібно, напишіть нам ситуацію – <strong>опрацюємо пропозицію за вас</strong>.">Ano, pokud nevíte přesně co potřebujete, napište nám situaci – <strong>zpracujeme návrh za vás</strong>.</div>
+                </div>
+                <div class="mobile-faq-item">
+                    <div class="mobile-faq-question" data-cs="Co když udělám chybu nebo něco zapomenu?" data-ua="Що якщо зроблю помилку або щось забуду?">Co když udělám chybu nebo něco zapomenu?</div>
+                    <div class="mobile-faq-answer" data-cs="<strong>Opravíme to</strong>. Stačí nám napsat – vše ladíme, dokud nejste spokojeni." data-ua="<strong>Виправимо це</strong>. Достатньо нам написати – все налаштовуємо, поки не будете задоволені."><strong>Opravíme to</strong>. Stačí nám napsat – vše ladíme, dokud nejste spokojeni.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="obchodni-podminky">
+            <div class="terms-container">
+                <div class="terms-header">
+                    <h2 data-cs="Obchodní podmínky &amp; Ochrana osobních údajů" data-ua="Умови надання послуг &amp; Захист персональних даних">Obchodní podmínky &amp; Ochrana osobních údajů</h2>
+                    <p style="font-style:italic; opacity:0.9;" data-cs="Jednoduše a transparentně – tak, jak to má být." data-ua="Просто і прозоро – як і має бути.">Jednoduše a transparentně – tak, jak to má být.</p>
+                </div>
+                <!-- Desktop tabs -->
+                <div class="terms-tabs">
+                    <button class="tab-button active" onclick="switchTab(event, 'terms')" data-cs="Obchodní podmínky" data-ua="Умови надання послуг">Obchodní podmínky</button>
+                    <button class="tab-button" onclick="switchTab(event, 'privacy')" data-cs="Ochrana údajů" data-ua="Захист даних">Ochrana údajů</button>
+                </div>
+                <!-- Desktop tab content -->
+                <div id="terms" class="tab-content active">
+                    <h4 data-cs="Úvodní ustanovení" data-ua="Вступні положення">Úvodní ustanovení</h4>
+                    <p data-cs="Tyto obchodní podmínky upravují vztah mezi poskytovatelem služby „dokumentuj.cz" (dále jen „Poskytovatel") a zákazníkem (dále jen „Zákazník") a jsou v souladu s právním řádem České republiky." data-ua="Ці умови надання послуг регулюють відносини між постачальником послуг „dokumentuj.cz" (далі „Постачальник") та клієнтом (далі „Клієнт") і відповідають правовій системі Чеської Республіки.">Tyto obchodní podmínky upravují vztah mezi poskytovatelem služby „dokumentuj.cz" (dále jen „Poskytovatel") a zákazníkem (dále jen „Zákazník") a jsou v souladu s právním řádem České republiky.</p>
+                    <h4 data-cs="Povaha služby" data-ua="Характер послуги">Povaha služby</h4>
+                    <p data-cs="Poskytovaná služba má konzultační a administrativní charakter. Nejde o právní pomoc ve smyslu zákona č. 85/1996 Sb., o advokacii." data-ua="Послуга має консультаційний та адміністративний характер. Це не правова допомога у розумінні закону № 85/1996 Зб., про адвокатуру.">Poskytovaná služba má konzultační a administrativní charakter. Nejde o právní pomoc ve smyslu zákona č. 85/1996 Sb., o advokacii.</p>
+                    <h4 data-cs="Objednávka a dodání" data-ua="Замовлення та доставка">Objednávka a dodání</h4>
+                    <p data-cs="Zákazník poskytne potřebné podklady prostřednictvím formuláře, e-mailu nebo jiným elektronickým způsobem. Výstup je obvykle dodán do 48 hodin." data-ua="Клієнт надає необхідні матеріали через форму, електронну пошту nebo іншим електронним способом. Результат зазвичай доставляється протягом 48 годин.">Zákazník poskytne potřebné podklady prostřednictvím formuláře, e-mailu nebo jiným elektronickým způsobem. Výstup je obvykle dodán do 48 hodin.</p>
+                    <h4 data-cs="Cena a platba" data-ua="Ціна та оплата">Cena a platba</h4>
+                    <p data-cs="Cena je uvedena v aktuálním ceníku na webu. Platba je bezhotovostní a probíhá na základě pokynů po zaslání náhledu dokumentu. Předmět služby je předán až po úhradě celé částky." data-ua="Ціна зазначена у поточному прайс-листі на веб-сайті. Оплата безготівкова і здійснюється за інструкціями після надсилання попереднього перегляду документa. Предмет послуги передається лише після оплати повної суми.">Cena je uvedena v aktuálním ceníku na webu. Platba je bezhotovostní a probíhá na základě pokynů po zaslání náhledu dokumentu. Předmět služby je předán až po úhradě celé částky.</p>
+                    <h4 data-cs="Reklamace" data-ua="Рекламації">Reklamace</h4>
+                    <p data-cs="Reklamaci lze uplatnit do 7 dnů od dodání dokumentu. Poskytovatel se zavazuje řešit reklamace vstřícně a v souladu s občanským zákoníkem." data-ua="Рекламацію можна подати протягом 7 днів з моменту доставки документa. Постачальник зобов'язується вирішувати рекламації доброзичливо та відповідно до цивільного кодексу.">Reklamaci lze uplatnit do 7 dnů od dodání dokumentu. Poskytovatel se zavazuje řešit reklamace vstřícně a v souladu s občanským zákoníkem.</p>
+                    <h4 data-cs="Odpovědnost" data-ua="Відповідальність">Odpovědnost</h4>
+                    <p data-cs="Poskytovatel neodpovídá za použití dokumentu třetí stranou. Výstup má charakter návrhu a Zákazník nese odpovědnost za jeho využití." data-ua="Постачальник не відповідає за використання документa третіми особами. Результат має характер пропозиції, і Клієнт несе відповідальність за його використання.">Poskytovatel neodpovídá za použití dokumentu třetí stranou. Výstup má charakter návrhu a Zákazník nese odpovědnost za jeho využití.</p>
+                    <h4 data-cs="Prohlášení o povaze služby" data-ua="Заява про характер послуги">Prohlášení o povaze služby</h4>
+                    <p data-cs="Nejedná se o právní službu ve smyslu zákona č. 85/1996 Sb., o advokacii. Výstupy mají charakter návrhu. Zákazník zodpovídá za jejich použití." data-ua="Це не правова послуга у розумінні закону № 85/1996 Зб., про адвокатуру. Результати мають характер пропозиції. Клієнт відповідає за їх використання.">Nejedná se o právní službu ve smyslu zákona č. 85/1996 Sb., o advokacii. Výstupy mají charakter návrhu. Zákazník zodpovídá za jejich použití.</p>
+                </div>
+                <div id="privacy" class="tab-content">
+                    <p data-cs="V tomto dokumentu najdete informace o tom, jak služba <strong>dokumentuj.cz</strong> zpracovává osobní údaje svých uživatelů v souladu s Nařízením EU 2016/679 (GDPR)." data-ua="У цьому документі ви знайдете інформацію про те, як служба <strong>dokumentuj.cz</strong> обробляє персональні дані своїх користувачів відповідно до Регламенту ЄС 2016/679 (GDPR).">V tomto dokumentu najdete informace o tom, jak služba <strong>dokumentuj.cz</strong> zpracovává osobní údaje svých uživatelů v souladu s Nařízením EU 2016/679 (GDPR).</p>
+                    <h4 data-cs="1. Správce údajů" data-ua="1. Обробник даних">1. Správce údajů</h4>
+                    <p data-cs="Správcem osobních údajů je provozovatel služby dokumentuj.cz. V případě dotazů nás kontaktujte na:" data-ua="Обробником персональних даних є оператор служби dokumentuj.cz. У разі запитань зв'яжіться з нами:">Správcem osobních údajů je provozovatel služby dokumentuj.cz. V případě dotazů nás kontaktujte na:</p>
+                    <ul>
+                        <li><strong>E-mail:</strong> objednavky@dokumentuj.cz</li>
+                        <li><strong>Web:</strong> www.dokumentuj.cz</li>
+                    </ul>
+                    <h4 data-cs="2. Jaké údaje zpracováváme" data-ua="2. Які дані ми обробляємо">2. Jaké údaje zpracováváme</h4>
+                    <ul data-cs-list="Jméno a příjmení;E-mailová adresa;Obsah dokumentů nebo výzev, které dobrovolně poskytnete;Případně telefon, pokud jej uvedete" data-ua-list="Ім'я та прізвище;Електронна адреса;Зміст документів nebo викликів, які ви добровільно надаєte;За необхідності телефон, якщо ви його вказуєte">
+                        <li>Jméno a příjmení</li>
+                        <li>E-mailová adresa</li>
+                        <li>Obsah dokumentů nebo výzev, které dobrovolně poskytnete</li>
+                        <li>Případně telefon, pokud jej uvedete</li>
+                    </ul>
+                    <h4 data-cs="3. Účel zpracování" data-ua="3. Мета обробки">3. Účel zpracování</h4>
+                    <p data-cs="Vaše údaje zpracováváme výhradně za účelem:" data-ua="Ваші дані ми обробляємо виключно з метою:">Vaše údaje zpracováváme výhradně za účelem:</p>
+                    <ul data-cs-list="přípravy odpovědi na úřední dokument nebo žádost;komunikace ohledně vaší objednávky;odeslání náhledu a finální verze dokumentu;zpracování platby a fakturace (pokud je vyžadována)" data-ua-list="підготовки відповіді на офіційний документ nebo заяву;комунікації щодо вашого замовлення;надсилання попереднього перегляду та фінальної версії документa;обробки платежу та виставлення рахунків (якщо потрібно)">
+                        <li>přípravy odpovědi na úřední dokument nebo žádost,</li>
+                        <li>komunikace ohledně vaší objednávky,</li>
+                        <li>odeslání náhledu a finální verze dokumentu,</li>
+                        <li>zpracování platby a fakturace (pokud je vyžadována).</li>
+                    </ul>
+                    <h4 data-cs="4. Doba uchování údajů" data-ua="4. Термін зберігання даних">4. Doba uchování údajů</h4>
+                    <p data-cs="Údaje uchováváme maximálně po dobu 6 měsíců od vyřízení objednávky, pokud není vyžadováno jinak (např. účetními předpisy)." data-ua="Дані зберігаємо максимум 6 місяців з моменту виконання замовлення, якщо інше не вимагається (наприклад, бухгалтерськими правилами).">Údaje uchováváme maximálně po dobu 6 měsíců od vyřízení objednávky, pokud není vyžadováno jinak (např. účetními předpisy).</p>
+                    <h4 data-cs="5. Kdo má k údajům přístup" data-ua="5. Хто має доступ до даних">5. Kdo má k údajům přístup</h4>
+                    <p data-cs="K vašim údajům má přístup pouze náš interní tým. Údaje nejsou předávány žádným třetím stranám, nepoužíváme je pro marketingové účely a neukládáme je do veřejně dostupných databází." data-ua="До ваших даних має доступ лише наша внутрішня команда. Дані не передаються третім особам, ми не використовуємо їх для маркетингових цілей і не зберігаємо в публічно доступних базах даних.">K vašim údajům má přístup pouze náš interní tým. Údaje nejsou předávány žádným třetím stranám, nepoužíváme je pro marketingové účely a neukládáme je do veřejně dostupných databází.</p>
+                    <h4 data-cs="6. Jak chráníme vaše data" data-ua="6. Як ми захищаємо ваші дані">6. Jak chráníme vaše data</h4>
+                    <ul data-cs-list="Web využívá šifrované HTTPS připojení;Přístup k e-mailové schránce je zabezpečen dvoufaktorově;Údaje nejsou ukládány do žádných veřejných systémů ani cloudových úložišť třetích stran" data-ua-list="Веб-сайт використовує зашифроване HTTPS з'єднання;Доступ до електронної скриньки захищений двофакторною аутентифікацією;Дані не зберігаються в жодних публічних системах чи хмарних сховищах третіх сторін">
+                        <li>Web využívá šifrované HTTPS připojení</li>
+                        <li>Přístup k e-mailové schránce je zabezpečen dvoufaktorově</li>
+                        <li>Údaje nejsou ukládány do žádných veřejných systémů ani cloudových úložišť třetích stran</li>
+                    </ul>
+                    <h4 data-cs="7. Vaše práva" data-ua="7. Ваші права">7. Vaše práva</h4>
+                    <p data-cs="Máte právo kdykoli požádat o:" data-ua="Ви маєte право в будь-який час запросити:">Máte právo kdykoli požádat o:</p>
+                    <ul data-cs-list="přístup k vašim údajům;opravu nebo výmaz údajů;omezení zpracování;přenositelnost údajů;podání stížnosti u Úřadu pro ochranu osobních údajů" data-ua-list="доступ до ваших даних;виправлення nebo видалення даних;обмеження обробки;переносимість даних;подання скарги до Управління захисту персональних даних">
+                        <li>přístup k vašim údajům,</li>
+                        <li>opravu nebo výmaz údajů,</li>
+                        <li>omezení zpracování,</li>
+                        <li>přenositelnost údajů,</li>
+                        <li>podání stížnosti u Úřadu pro ochranu osobních údajů.</li>
+                    </ul>
+                    <h4 data-cs="8. Kontakt" data-ua="8. Контакт">8. Kontakt</h4>
+                    <p data-cs="Máte-li jakékoli dotazy ohledně zpracování údajů, obraťte se na nás na e-mailu: <strong>objednavky@dokumentuj.cz</strong>." data-ua="Якщо у вас є будь-які питання щодо обробки даних, зверніться до нас на електронну пошту: <strong>objednavky@dokumentuj.cz</strong>.">Máte-li jakékoli dotazy ohledně zpracování údajů, obraťte se na nás na e-mailu: <strong>objednavky@dokumentuj.cz</strong>.</p>
+                </div>
+                <!-- Mobile content -->
+                <div class="mobile-terms-content">
+                    <h4 data-cs="Obchodní podmínky" data-ua="Умови надання послуг">Obchodní podmínky</h4>
+                    <h4 data-cs="Úvodní ustanovení" data-ua="Вступні положення">Úvodní ustanovení</h4>
+                    <p data-cs="Tyto obchodní podmínky upravují vztah mezi poskytovatelem služby „dokumentuj.cz" (dále jen „Poskytovatel") a zákazníkem (dále jen „Zákazník") a jsou v souladu s právním řádem České republiky." data-ua="Ці умови надання послуг регулюють відносини між постачальником послуг „dokumentuj.cz" (далі „Постачальник") та клієнтом (далі „Клієнт") і відповідають правовій системі Чеської Республіки.">Tyto obchodní podmínky upravují vztah mezi poskytovatelem služby „dokumentuj.cz" (dále jen „Poskytovatel") a zákazníkem (dále jen „Zákazník") a jsou v souladu s právním řádem České republiky.</p>
+                    <h4 data-cs="Povaha služby" data-ua="Характер послуги">Povaha služby</h4>
+                    <p data-cs="Poskytovaná služba má konzultační a administrativní charakter. Nejde o právní pomoc ve smyslu zákona č. 85/1996 Sb., o advokacii." data-ua="Послуга має консультаційний та адміністративний характер. Це не правова допомога у розумінні закону № 85/1996 Зб., про адвокатуру.">Poskytovaná služba má konzultační a administrativní charakter. Nejde o právní pomoc ve smyslu zákona č. 85/1996 Sb., o advokacii.</p>
+                    <h4 data-cs="Objednávka a dodání" data-ua="Замовлення та доставка">Objednávka a dodání</h4>
+                    <p data-cs="Zákazník poskytne potřebné podklady prostřednictvím formuláře, e-mailu nebo jiným elektronickým způsobem. Výstup je obvykle dodán do 48 hodin." data-ua="Клієнт надає необхідні матеріали через форму, електронну пошту nebo іншим електронним способом. Результат зазвичай доставляється протягом 48 годин.">Zákazník poskytne potřebné podklady prostřednictvím formuláře, e-mailu nebo jiným elektronickým způsobem. Výstup je obvykle dodán do 48 hodin.</p>
+                    <h4 data-cs="Cena a platba" data-ua="Ціна та оплата">Cena a platba</h4>
+                    <p data-cs="Cena je uvedena v aktuálním ceníku na webu. Platba je bezhotovostní a probíhá na základě pokynů po zaslání náhledu dokumentu. Předmět služby je předán až po úhradě celé částky." data-ua="Ціна зазначена у поточному прайс-листі на веб-сайті. Оплата безготівкова і здійснюється за інструкціями після надсилання попереднього перегляду dokumenta. Předmět послуги передається лише після оплати повної суми.">Cena je uvedena v aktuálním ceníku na webu. Platba je bezhotovostní a probíhá na základě pokynů po zaslání náhledu dokumentu. Předmět služby je předán až po úhradě celé částky.</p>
+                    <h4 data-cs="Reklamace" data-ua="Рекламації">Reklamace</h4>
+                    <p data-cs="Reklamaci lze uplatnit do 7 dnů od dodání dokumentu. Poskytovatel se zavazuje řešit reklamace vstřícně a v souladu s občanským zákoníkem." data-ua="Рекламацію можна подати протягом 7 днів з моменту доставки dokumenta. Постачальник зобов'язується вирішувати рекламації доброзичливо та відповідно до цивільного кодексу.">Reklamaci lze uplatnit do 7 dnů od dodání dokumentu. Poskytovatel se zavazuje řešit reklamace vstřícně a v souladu s občanským zákoníkem.</p>
+                    <h4 data-cs="Odpovědnost" data-ua="Відповідальність">Odpovědnost</h4>
+                    <p data-cs="Poskytovatel neodpovídá za použití dokumentu třetí stranou. Výstup má charakter návrhu a Zákazník nese odpovědnost za jeho využití." data-ua="Постачальник не відповідає за використання dokumenta третіми особами. Результат має характер пропозиції, і Клієнт несе відповідальність за його використання.">Poskytovatel neodpovídá za použití dokumentu třetí stranou. Výstup má charakter návrhu a Zákazník nese odpovědnost za jeho využití.</p>
+                    <h4 data-cs="Prohlášení o povaze služby" data-ua="Заява про характер послуги">Prohlášení o povaze služby</h4>
+                    <p data-cs="Nejedná se o právní službu ve smyslu zákona č. 85/1996 Sb., o advokacii. Výstupy mají charakter návrhu. Zákazník zodpovídá za jejich použití." data-ua="Це не правова послуга у розумінні закону № 85/1996 Зб., про адвокатуру. Результати мають характер пропозиції. Клієнт відповідає за їх використання.">Nejedná se o právní službu ve smyslu zákona č. 85/1996 Sb., o advokacii. Výstupy mají charakter návrhu. Zákazník zodpovídá za jejich použití.</p>
+                    <div class="mobile-section-divider"></div>
+                    <h4 data-cs="Ochrana osobních údajů" data-ua="Захист персональних даних">Ochrana osobních údajů</h4>
+                    <p data-cs="V tomto dokumentu najdete informace o tom, jak služba <strong>dokumentuj.cz</strong> zpracovává osobní údaje svých uživatelů v souladu s Nařízením EU 2016/679 (GDPR)." data-ua="У цьому документі ви знайдете інформацію про те, як служба <strong>dokumentuj.cz</strong> обробляє персональні дані своїх користувачів відповідно до Регламенту ЄС 2016/679 (GDPR).">V tomto dokumentu najdete informace o tom, jak služba <strong>dokumentuj.cz</strong> zpracovává osobní údaje svých uživatelů v souladu s Nařízením EU 2016/679 (GDPR).</p>
+                    <h4 data-cs="1. Správce údajů" data-ua="1. Обробник даних">1. Správce údajů</h4>
+                    <p data-cs="Správcem osobních údajů je provozovatel služby dokumentuj.cz. V případě dotazů nás kontaktujte na:" data-ua="Обробником персональних даних є оператор служби dokumentuj.cz. У разі запитань зв'яжіться з нами:">Správcem osobních údajů je provozovatel služby dokumentuj.cz. V případě dotazů nás kontaktujte na:</p>
+                    <ul>
+                        <li><strong>E-mail:</strong> objednavky@dokumentuj.cz</li>
+                        <li><strong>Web:</strong> www.dokumentuj.cz</li>
+                    </ul>
+                    <h4 data-cs="2. Jaké údaje zpracováváme" data-ua="2. Які дані ми обробляємо">2. Jaké údaje zpracováváme</h4>
+                    <ul>
+                        <li data-cs="Jméno a příjmení" data-ua="Ім'я та прізвище">Jméno a příjmení</li>
+                        <li data-cs="E-mailová adresa" data-ua="Електронна адреса">E-mailová adresa</li>
+                        <li data-cs="Obsah dokumentů nebo výzev, které dobrovolně poskytnete" data-ua="Зміст dokumentů nebo викликів, які ви добровільно надаєte">Obsah dokumentů nebo výzev, které dobrovolně poskytnete</li>
+                        <li data-cs="Případně telefon, pokud jej uvedete" data-ua="За необхідності телефон, якщо ви його вказуєte">Případně telefon, pokud jej uvedete</li>
+                    </ul>
+                    <h4 data-cs="3. Účel zpracování" data-ua="3. Мета обробки">3. Účel zpracování</h4>
+                    <p data-cs="Vaše údaje zpracováváme výhradně za účelem:" data-ua="Ваші дані ми обробляємо виключно з метою:">Vaše údaje zpracováváme výhradně za účelem:</p>
+                    <ul>
+                        <li data-cs="přípravy odpovědi na úřední dokument nebo žádost," data-ua="підготовки відповіді на офіційний документ nebo заяву,">přípravy odpovědi na úřední dokument nebo žádost,</li>
+                        <li data-cs="komunikace ohledně vaší objednávky," data-ua="комунікації щодо вашого замовлення,">komunikace ohledně vaší objednávky,</li>
+                        <li data-cs="odeslání náhledu a finální verze dokumentu," data-ua="надсилання попереднього перегляду та фінальної версії dokumenta,">odeslání náhledu a finální verze dokumentu,</li>
+                        <li data-cs="zpracování platby a fakturace (pokud je vyžadována)." data-ua="обробки platežу ta виставлення рахунків (якщо потрібно).">zpracování platby a fakturace (pokud je vyžadována).</li>
+                    </ul>
+                    <h4 data-cs="4. Doba uchování údajů" data-ua="4. Термін зберігання даних">4. Doba uchování údajů</h4>
+                    <p data-cs="Údaje uchováváme maximálně po dobu 6 měsíců od vyřízení objednávky, pokud není vyžadováno jinak (např. účetními předpisy)." data-ua="Дані зберігаємо максимум 6 місяців з моменту виконання замовлення, якщо інше не вимагається (наприклад, бухгалтерськими правилами).">Údaje uchováváme maximálně po dobu 6 měsíců od vyřízení objednávky, pokud není vyžadováno jinak (např. účetními předpisy).</p>
+                    <h4 data-cs="5. Kdo má k údajům přístup" data-ua="5. Хто має доступ до даних">5. Kdo má k údajům přístup</h4>
+                    <p data-cs="K vašim údajům má přístup pouze náš interní tým. Údaje nejsou předávány žádným třetím stranám, nepoužíváme je pro marketingové účely a neukládáme je do veřejně dostupných databází." data-ua="До ваших даних має доступ лише наша внутрішня команда. Дані не передаються третім особам, ми не використовуємо їх для маркетингових цілей і не зберігаємо в публічно доступних базах даних.">K vašim údajům má přístup pouze náš interní tým. Údaje nejsou předávány žádným třetím stranám, nepoužíváme je pro marketingové účely a neukládáme je do veřejně dostupných databází.</p>
+                    <h4 data-cs="6. Jak chráníme vaše data" data-ua="6. Як ми захищаємо ваші дані">6. Jak chráníme vaše data</h4>
+                    <ul>
+                        <li data-cs="Web využívá šifrované HTTPS připojení" data-ua="Веб-сайт використовує зашифроване HTTPS з'єднання">Web využívá šifrované HTTPS připojení</li>
+                        <li data-cs="Přístup k e-mailové schránce je zabezpečen dvoufaktorově" data-ua="Доступ до електронної скриньки захищений двофакторною аутентифікацією">Přístup k e-mailové schránce je zabezpečen dvoufaktorově</li>
+                        <li data-cs="Údaje nejsou ukládány do žádných veřejných systémů ani cloudových úložišť třetích stran" data-ua="Дані не зберігаються в жодних публічних системах чи хмарних сховищах třetích сторін">Údaje nejsou ukládány do žádných veřejných systémů ani cloudových úložišť třetích stran</li>
+                    </ul>
+                    <h4 data-cs="7. Vaše práva" data-ua="7. Ваші права">7. Vaše práva</h4>
+                    <p data-cs="Máte právo kdykoli požádat o:" data-ua="Ви маєte право в будь-який час запросити:">Máte právo kdykoli požádat o:</p>
+                    <ul>
+                        <li data-cs="přístup k vašim údajům," data-ua="доступ до ваших даних,">přístup k vašim údajům,</li>
+                        <li data-cs="opravu nebo výmaz údajů," data-ua="виправлення nebo видалення даних,">opravu nebo výmaz údajů,</li>
+                        <li data-cs="omezení zpracování," data-ua="обмеження обробки,">omezení zpracování,</li>
+                        <li data-cs="přenositelnost údajů," data-ua="переносимість даних,">přenositelnost údajů,</li>
+                        <li data-cs="podání stížnosti u Úřadu pro ochranu osobních údajů." data-ua="подання скарги до Управління захисту персональних даних.">podání stížnosti u Úřadu pro ochranu osobních údajů.</li>
+                    </ul>
+                    <h4 data-cs="8. Kontakt" data-ua="8. Контакт">8. Kontakt</h4>
+                    <p data-cs="Máte-li jakékoli dotazy ohledně zpracování údajů, obraťte se na nás na e-mailu: <strong>objednavky@dokumentuj.cz</strong>." data-ua="Якщо у вас є будь-які питання щодо обробки даних, зверніться до нас на електронну пошту: <strong>objednavky@dokumentuj.cz</strong>.">Máte-li jakékoli dotazy ohledně zpracování údajů, obraťte se na nás na e-mailu: <strong>objednavky@dokumentuj.cz</strong>.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-cs="© 2025 dokumentuj.cz" data-ua="© 2025 dokumentuj.cz">© 2025 dokumentuj.cz</p>
+        <p>
+            <a href="#obchodni-podminky" data-cs="Obchodní podmínky" data-ua="Умови надання послуг">Obchodní podmínky</a> | 
+            <a href="#obchodni-podminky" data-cs="Zásady ochrany osobních údajů" data-ua="Принципи захисту персональних даних">Zásady ochrany osobních údajů</a>
+        </p>
+    </footer>
+
+    <script>
+        let zakladniCena = 0;
+        let currentLanguage = 'cs';
+        
+        // ===== WIZARD GLOBÁLNÍ PROMĚNNÉ A MAPOVÁNÍ =====
+        let wizardData = {
+            step1: null,
+            step2: null, 
+            step3: null,
+            step4: null,
+            documentType: null,
+            estimatedPrice: 299
+        };
+
+        // Mapování možností pro krok 3 podle předchozích voleb
+        const step3Options = {
+            // Pro "obdržel dokument"
+            'obdrzel-pokuta': [
+                {value: 'odvolat', icon: '⚖', title: 'Podat odvolání', desc: 'Nesouhlasím s pokutou'},
+                {value: 'splatky', icon: '💳', title: 'Požádat o splátkový kalendář', desc: 'Nemohu zaplatit najednou'},
+                {value: 'odklad', icon: '⏰', title: 'Požádat o odklad', desc: 'Potřebuji více času'},
+                {value: 'chyba', icon: '❌', title: 'Upozornit na chybu', desc: 'V pokutě je chyba'}
+            ],
+            'obdrzel-exekuce': [
+                {value: 'namitka', icon: '🛡', title: 'Podat námitku', desc: 'Nesouhlasím s exekucí'},
+                {value: 'splatky', icon: '💳', title: 'Navrhnout splátkový kalendář', desc: 'Chci postupně splácet'},
+                {value: 'majetkove', icon: '🏠', title: 'Upozornit na chráněný majetek', desc: 'Mají chráněné věci'}
+            ],
+            'obdrzel-rozhodnuti': [
+                {value: 'odvolat', icon: '📝', title: 'Podat odvolání', desc: 'Nesouhlasím s rozhodnutím'},
+                {value: 'doplnit', icon: '📋', title: 'Doplnit podklady', desc: 'Chci dodat další dokumenty'},
+                {value: 'vysvetlit', icon: '❓', title: 'Požádat o vysvětlení', desc: 'Nerozumím rozhodnutí'}
+            ],
+            'obdrzel-vyzva': [
+                {value: 'dostavit', icon: '🏛', title: 'Omluvit se z jednání', desc: 'Nemohu se dostavit'},
+                {value: 'doplnit', icon: '📋', title: 'Doplnit dokumenty', desc: 'Chci dodat požadované doklady'},
+                {value: 'vysvetlit', icon: '❓', title: 'Požádat o vysvětlení', desc: 'Nerozumím požadavku'}
+            ],
+            'obdrzel-soudni': [
+                {value: 'odvolat', icon: '⚖', title: 'Podat odvolání/opravný prostředek', desc: 'Nesouhlasím s rozhodnutím'},
+                {value: 'doplnit', icon: '📋', title: 'Doplnit vyjádření', desc: 'Chci se vyjádřit k věci'},
+                {value: 'zastoupeni', icon: '👨‍⚖️', title: 'Žádat o zastoupení', desc: 'Potřebuji právní pomoc'}
+            ],
+
+            // Pro "chci vyřídit" 
+            'chci_vyridit-davky': [
+                {value: 'pridat', icon: '💰', title: 'Požádat o dávky', desc: 'Nová žádost o sociální dávky'},
+                {value: 'zvysit', icon: '📈', title: 'Požádat o zvýšení', desc: 'Změnily se mi podmínky'},
+                {value: 'obnovit', icon: '🔄', title: 'Obnovit žádost', desc: 'Dávky mi byly ukončeny'}
+            ],
+            'chci_vyridit-prace': [
+                {value: 'nezamestnanost', icon: '📋', title: 'Hlášení nezaměstnanosti', desc: 'Ztratil jsem práci'},
+                {value: 'rekvalifikace', icon: '🎓', title: 'Žádost o rekvalifikaci', desc: 'Chci se přeškolit'},
+                {value: 'spor', icon: '⚖', title: 'Pracovní spor', desc: 'Problém se zaměstnavatelem'}
+            ],
+            'chci_vyridit-zdravi': [
+                {value: 'invalidita', icon: '🏥', title: 'Žádost o invalidní důchod', desc: 'Nemohu pracovat'},
+                {value: 'posudek', icon: '📋', title: 'Žádost o posudek', desc: 'Potřebuji lékařské posouzení'},
+                {value: 'odvolani', icon: '📝', title: 'Odvolání proti rozhodnutí', desc: 'Nesouhlasím s posudkem'}
+            ],
+            'chci_vyridit-bydleni': [
+                {value: 'najem', icon: '🏠', title: 'Problém s nájmem', desc: 'Spor s pronajímatelem'},
+                {value: 'reklamace', icon: '🔧', title: 'Reklamace bytových závad', desc: 'Něco je v bytě rozbité'},
+                {value: 'sousede', icon: '👥', title: 'Sousedský spor', desc: 'Problém se sousedy'}
+            ],
+            'chci_vyridit-dane': [
+                {value: 'priznani', icon: '📊', title: 'Daňové přiznání', desc: 'Potřebuji podat přiznání'},
+                {value: 'splatky', icon: '💳', title: 'Splátkový kalendář', desc: 'Nemohu zaplatit najednou'},
+                {value: 'odklad', icon: '⏰', title: 'Odklad platby', desc: 'Potřebuji odložit úhradu'}
+            ],
+
+            // Pro "mám problém"
+            'mam_problem-nespravedlive': [
+                {value: 'odvolani', icon: '📝', title: 'Podat odvolání', desc: 'Řádné odvolání k vyššímu orgánu'},
+                {value: 'soud', icon: '⚖', title: 'Správní žaloba', desc: 'Obrátit se na soud'},
+                {value: 'ombudsman', icon: '🛡', title: 'Stížnost ombudsmanovi', desc: 'Veřejný ochránce práv'}
+            ],
+            'mam_problem-diskriminace': [
+                {value: 'stiznost', icon: '📝', title: 'Stížnost na chování', desc: 'Formální stížnost na úřad'},
+                {value: 'ombudsman', icon: '🛡', title: 'Stížnost ombudsmanovi', desc: 'Veřejný ochránce práv'},
+                {value: 'antidiskriminacni', icon: '⚖', title: 'Antidiskriminační zákon', desc: 'Ochrana před diskriminací'}
+            ],
+            'mam_problem-dluh': [
+                {value: 'splatky', icon: '💳', title: 'Splátkový kalendář', desc: 'Postupné splácení'},
+                {value: 'odklad', icon: '⏰', title: 'Odklad platby', desc: 'Dočasné pozastavení'},
+                {value: 'insolvence', icon: '📋', title: 'Insolvence', desc: 'Řešení úpadku'}
+            ],
+            'mam_problem-chyba': [
+                {value: 'oprava', icon: '🔧', title: 'Žádost o opravu', desc: 'Oprava chybných údajů'},
+                {value: 'prepocet', icon: '🧮', title: 'Přepočet', desc: 'Nový výpočet částky'},
+                {value: 'vysvetleni', icon: '❓', title: 'Vysvětlení postupu', desc: 'Jak došlo k chybě'}
+            ],
+
+            // Pro "nevím"
+            'nevim-financni': [
+                {value: 'davky', icon: '💰', title: 'Sociální dávky', desc: 'Hmotná nouze, příspěvky'},
+                {value: 'dluh', icon: '💳', title: 'Řešení dluhů', desc: 'Splátkový kalendář, insolvence'},
+                {value: 'poradna', icon: '🏢', title: 'Finanční poradna', desc: 'Odborná pomoc'}
+            ],
+            'nevim-zdravotni': [
+                {value: 'invalidita', icon: '🏥', title: 'Invalidní důchod', desc: 'Nemohu pracovat'},
+                {value: 'nemocenske', icon: '🩺', title: 'Nemocenské dávky', desc: 'Dočasná neschopnost'},
+                {value: 'pece', icon: '🤲', title: 'Potřeba péče', desc: 'Příspěvek na péči'}
+            ],
+            'nevim-rodinne': [
+                {value: 'alimenty', icon: '👶', title: 'Výživné', desc: 'Alimenty na dítě'},
+                {value: 'opatrovna', icon: '👨‍👩‍👧‍👦', title: 'Opatrovnictví', desc: 'Péče o nezletilé'},
+                {value: 'rozvod', icon: '💔', title: 'Rozvod', desc: 'Ukončení manželství'}
+            ],
+            'nevim-obecne': [
+                {value: 'konzultace', icon: '💬', title: 'Obecná konzultace', desc: 'Potřebuji poradit'},
+                {value: 'smerovani', icon: '🧭', title: 'Nasměrování na správný úřad', desc: 'Nevím kam se obrátit'},
+                {value: 'prvni_pomoc', icon: '🆘', title: 'První pomoc', desc: 'Okamžitá rada'}
+            ]
+        };
+
+        // ===== WIZARD FUNKCE =====
+        // Funkce pro výběr možnosti v wizardu
+        function selectWizardOption(element, step) {
+            // Zrušit předchozí výběr v rámci aktuálního kroku
+            const currentStep = element.closest('.wizard-step');
+            currentStep.querySelectorAll('.wizard-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Označit nový výběr
+            element.classList.add('selected');
+            
+            // Uložit hodnotu
+            const value = element.getAttribute('data-value');
+            wizardData[`step${step}`] = value;
+            
+            // Aktivovat tlačítko Next pro aktuální krok
+            const nextBtn = currentStep.querySelector('.wizard-btn.primary');
+            if (nextBtn) {
+                nextBtn.disabled = false;
+            }
+            
+            // Speciální logika pouze pro kroky kde je potřeba
+            if (step === 2) {
+                prepareStep3(wizardData.step1, value);
+            } else if (step === 3) {
+                // Aktualizovat cenu na základě typu dokumentu
+                updateWizardPriceByDocumentType();
+                updateWizardSummaryPrice();
+            } else if (step === 4) {
+                updateWizardPrice(value);
+                updateWizardSummaryPrice();
+            }
+        }
+
+        // Příprava kroku 2 podle volby v kroku 1
+        function prepareStep2(step1Value) {
+            // Skrýt všechny step-2 varianty
+            ['2a', '2b', '2c', '2d'].forEach(suffix => {
+                const step = document.getElementById(`wizard-step-${suffix}`);
+                if (step) {
+                    step.style.display = 'none';
+                    step.classList.remove('active');
+                }
+            });
+            
+            // Zobrazit správnou variantu
+            let targetStep;
+            switch(step1Value) {
+                case 'obdrzel': targetStep = '2a'; break;
+                case 'chci_vyridit': targetStep = '2b'; break;
+                case 'mam_problem': targetStep = '2c'; break;
+                case 'nevim': targetStep = '2d'; break;
+            }
+            
+            if (targetStep) {
+                const stepElement = document.getElementById(`wizard-step-${targetStep}`);
+                stepElement.style.display = 'block';
+                stepElement.classList.add('active');
+            }
+        }
+
+        // Příprava kroku 3 podle předchozích voleb
+        function prepareStep3(step1Value, step2Value) {
+            const optionsKey = `${step1Value}-${step2Value}`;
+            const options = step3Options[optionsKey] || [
+                {value: 'general', icon: '📝', title: 'Obecná odpověď', desc: 'Standardní dokument'}
+            ];
+            
+            // Vygenerovat možnosti
+            const optionsHtml = options.map(option => `
+                <div class="wizard-option" data-value="${option.value}" onclick="selectWizardOption(this, 3)">
+                    <div class="option-icon">${option.icon}</div>
+                    <strong>${option.title}</strong>
+                    <p>${option.desc}</p>
+                </div>
+            `).join('');
+            
+            document.getElementById('step3-options').innerHTML = optionsHtml;
+            
+            // Aktualizovat otázku
+            const question = getStep3Question(step1Value, step2Value);
+            document.getElementById('step3-question').textContent = question;
+        }
+
+        // Generování otázky pro krok 3
+        function getStep3Question(step1, step2) {
+            const questions = {
+                'obdrzel': 'Jak chcete reagovat?',
+                'chci_vyridit': 'Jaký typ žádosti potřebujete?',
+                'mam_problem': 'Jakým způsobem se chcete bránit?',
+                'nevim': 'Co by vám nejvíce pomohlo?'
+            };
+            return questions[step1] || 'Co chcete udělat?';
+        }
+
+        // Navigace mezi kroky wizardu
+        function nextWizardStep(stepNumber) {
+            // Skrýt aktuální krok
+            const currentStep = document.querySelector('.wizard-step.active, .wizard-step[style*="block"]');
+            if (currentStep) {
+                currentStep.classList.remove('active');
+                currentStep.style.display = 'none';
+            }
+            
+            // Zobrazit cílový krok
+            let targetStep;
+            if (stepNumber === 2) {
+                // Připravit a zobrazit správný krok 2 podle step1
+                const step1Value = wizardData.step1;
+                prepareStep2(step1Value);
+                
+                const suffixes = {
+                    'obdrzel': '2a',
+                    'chci_vyridit': '2b', 
+                    'mam_problem': '2c',
+                    'nevim': '2d'
+                };
+                targetStep = document.getElementById(`wizard-step-${suffixes[step1Value]}`);
+            } else if (stepNumber === 3) {
+                // Připravit možnosti pro krok 3
+                prepareStep3(wizardData.step1, wizardData.step2);
+                targetStep = document.getElementById(`wizard-step-${stepNumber}`);
+            } else {
+                targetStep = document.getElementById(`wizard-step-${stepNumber}`);
+            }
+            
+            if (targetStep) {
+                targetStep.classList.add('active');
+                targetStep.style.display = 'block';
+            }
+            
+            // Aktualizovat progress indikátor
+            updateProgressIndicator(stepNumber);
+            
+            // Speciální akce pro krok 4
+            if (stepNumber === 4) {
+                generateWizardSummary();
+            }
+        }
+
+        function prevWizardStep(stepNumber) {
+            // Skrýt aktuální krok
+            const currentStep = document.querySelector('.wizard-step.active, .wizard-step[style*="block"]');
+            if (currentStep) {
+                currentStep.classList.remove('active');
+                currentStep.style.display = 'none';
+            }
+            
+            // Zobrazit cílový krok
+            let targetStep;
+            if (stepNumber === 2) {
+                // Návrat na krok 2 podle step1
+                const step1Value = wizardData.step1;
+                const suffixes = {
+                    'obdrzel': '2a',
+                    'chci_vyridit': '2b',
+                    'mam_problem': '2c', 
+                    'nevim': '2d'
+                };
+                targetStep = document.getElementById(`wizard-step-${suffixes[step1Value]}`);
+            } else {
+                targetStep = document.getElementById(`wizard-step-${stepNumber}`);
+            }
+            
+            if (targetStep) {
+                targetStep.classList.add('active');
+                targetStep.style.display = 'block';
+            }
+            
+            updateProgressIndicator(stepNumber);
+        }
+
+        // Aktualizace progress indikátoru
+        function updateProgressIndicator(currentStep) {
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        // Aktualizace ceny podle typu dokumentu z wizardu
+        function updateWizardPriceByDocumentType() {
+            const combination = `${wizardData.step1}-${wizardData.step2}-${wizardData.step3}`;
+            
+            // OPRAVENÉ mapování kombinací na správné ceny podle hlavní sekce
+            const priceMap = {
+                // Jednoduchá odpověď - 199 Kč
+                'obdrzel-pokuta-splatky': 199,
+                'obdrzel-pokuta-odklad': 199,
+                'obdrzel-pokuta-chyba': 199,
+                'obdrzel-vyzva-dostavit': 199,
+                'obdrzel-vyzva-doplnit': 199,
+                'obdrzel-vyzva-vysvetlit': 199,
+                'obdrzel-rozhodnuti-doplnit': 199,
+                'obdrzel-rozhodnuti-vysvetlit': 199,
+                'chci_vyridit-davky-pridat': 199,
+                'chci_vyridit-davky-zvysit': 199,
+                'chci_vyridit-davky-obnovit': 199,
+                'chci_vyridit-dane-splatky': 199,
+                'chci_vyridit-dane-odklad': 199,
+                'mam_problem-dluh-splatky': 199,
+                'mam_problem-dluh-odklad': 199,
+                'nevim-financni-davky': 199,
+                'nevim-financni-dluh': 199,
+
+                // Odvolání / Námitka - 399 Kč
+                'obdrzel-pokuta-odvolat': 399,
+                'obdrzel-exekuce-namitka': 399,
+                'obdrzel-rozhodnuti-odvolat': 399,
+                'obdrzel-soudni-odvolat': 399,
+                'mam_problem-nespravedlive-odvolani': 399,
+                'mam_problem-nespravedlive-soud': 399,
+                'chci_vyridit-zdravi-odvolani': 399,
+
+                // Žádost nebo stížnost - 299 Kč
+                'obdrzel-exekuce-splatky': 299,
+                'obdrzel-exekuce-majetkove': 299,
+                'obdrzel-soudni-doplnit': 299,
+                'obdrzel-soudni-zastoupeni': 299,
+                'chci_vyridit-prace-nezamestnanost': 299,
+                'chci_vyridit-prace-rekvalifikace': 299,
+                'chci_vyridit-prace-spor': 299,
+                'chci_vyridit-zdravi-invalidita': 299,
+                'chci_vyridit-zdravi-posudek': 299,
+                'chci_vyridit-bydleni-najem': 299,
+                'chci_vyridit-bydleni-reklamace': 299,
+                'chci_vyridit-bydleni-sousede': 299,
+                'chci_vyridit-dane-priznani': 299,
+                'mam_problem-diskriminace-stiznost': 299,
+                'mam_problem-diskriminace-ombudsman': 299,
+                'mam_problem-diskriminace-antidiskriminacni': 299,
+                'mam_problem-chyba-oprava': 299,
+                'mam_problem-chyba-prepocet': 299,
+                'mam_problem-chyba-vysvetleni': 299,
+                'mam_problem-dluh-insolvence': 299,
+                'nevim-zdravotni-invalidita': 299,
+                'nevim-zdravotni-nemocenske': 299,
+                'nevim-zdravotni-pece': 299,
+                'nevim-rodinne-alimenty': 299,
+                'nevim-rodinne-opatrovna': 299,
+                'nevim-rodinne-rozvod': 299,
+                'nevim-obecne-konzultace': 299,
+                'nevim-obecne-smerovani': 299,
+                'nevim-obecne-prvni_pomoc': 299,
+                'nevim-financni-poradna': 299
+            };
+            
+            // Nastavit cenu podle mapování nebo výchozí 199
+            wizardData.estimatedPrice = priceMap[combination] || 199;
+        }
+
+        // Aktualizace ceny v wizardu (pro urgency v kroku 4)
+        function updateWizardPrice(urgency) {
+            // Nejdříve získat základní cenu podle typu dokumentu
+            updateWizardPriceByDocumentType();
+            
+            let basePrice = wizardData.estimatedPrice;
+            
+            // Přidat příplatek za rychlost
+            switch(urgency) {
+                case 'express': 
+                    wizardData.estimatedPrice = basePrice + 100; // +100 Kč za 24h
+                    break;
+                case 'urgent': 
+                    wizardData.estimatedPrice = basePrice + 200; // +200 Kč za urgentní
+                    break;
+                default: 
+                    // Zachovat základní cenu
+                    break;
+            }
+        }
+
+        // Aktualizace ceny v shrnutí
+        function updateWizardSummaryPrice() {
+            const summaryElement = document.getElementById('wizard-summary');
+            if (summaryElement && summaryElement.innerHTML.trim() !== '') {
+                generateWizardSummary();
+            }
+        }
+
+        // Generování shrnutí v posledním kroku wizardu
+        function generateWizardSummary() {
+            const summaryData = {
+                situation: getSituationDescription(),
+                documentType: getDocumentTypeDescription(),
+                action: getActionDescription(),
+                price: wizardData.estimatedPrice
+            };
+            
+            const summaryHtml = `
+                <div class="summary-card">
+                    <h4>📋 Shrnutí vaší objednávky:</h4>
+                    <div class="summary-item">
+                        <strong>Situace:</strong> ${summaryData.situation}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Typ dokumentu:</strong> ${summaryData.documentType}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Požadovaná akce:</strong> ${summaryData.action}
+                    </div>
+                    <div class="summary-item price-summary">
+                        <strong>Cena:</strong> <span class="price">${summaryData.price} Kč</span>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('wizard-summary').innerHTML = summaryHtml;
+        }
+
+        // Pomocné funkce pro popis situace
+        function getSituationDescription() {
+            const descriptions = {
+                'obdrzel': 'Obdržel jste úřední dokument',
+                'chci_vyridit': 'Chcete něco vyřídit u úřadu',
+                'mam_problem': 'Máte problém, který chcete řešit',
+                'nevim': 'Potřebujete poradit'
+            };
+            return descriptions[wizardData.step1] || 'Nespecifikováno';
+        }
+
+        function getDocumentTypeDescription() {
+            // Kombinace step1 + step2 + step3 pro popis typu dokumentu
+            const combinations = {
+                // Jednoduchá odpověď - 199 Kč
+                'obdrzel-pokuta-splatky': 'Žádost o splátkový kalendář k pokutě',
+                'obdrzel-pokuta-odklad': 'Žádost o odklad platby pokuty',
+                'obdrzel-pokuta-chyba': 'Upozornění na chybu v pokutě',
+                'obdrzel-vyzva-dostavit': 'Omluva z úředního jednání',
+                'obdrzel-vyzva-doplnit': 'Doplnění požadovaných dokumentů',
+                'obdrzel-vyzva-vysvetlit': 'Žádost o vysvětlení výzvy',
+                'obdrzel-rozhodnuti-doplnit': 'Doplnění podkladů k rozhodnutí',
+                'obdrzel-rozhodnuti-vysvetlit': 'Žádost o vysvětlení rozhodnutí',
+                'chci_vyridit-davky-pridat': 'Žádost o sociální dávky',
+                'chci_vyridit-davky-zvysit': 'Žádost o zvýšení dávek',
+                'chci_vyridit-davky-obnovit': 'Žádost o obnovení dávek',
+                'chci_vyridit-dane-splatky': 'Žádost o splátkový kalendář pro daně',
+                'chci_vyridit-dane-odklad': 'Žádost o odklad daňové platby',
+                'mam_problem-dluh-splatky': 'Žádost o splátkový kalendář',
+                'mam_problem-dluh-odklad': 'Žádost o odklad platby',
+
+                // Odvolání / Námitka - 399 Kč
+                'obdrzel-pokuta-odvolat': 'Odvolání proti pokutě',
+                'obdrzel-exekuce-namitka': 'Námitka proti exekuci',
+                'obdrzel-rozhodnuti-odvolat': 'Odvolání proti úřednímu rozhodnutí',
+                'obdrzel-soudni-odvolat': 'Odvolání proti soudnímu verdiktu',
+                'mam_problem-nespravedlive-odvolani': 'Odvolání proti nespravedlivému rozhodnutí',
+                'mam_problem-nespravedlive-soud': 'Správní žaloba',
+                'chci_vyridit-zdravi-odvolani': 'Odvolání proti zdravotnímu posudku',
+
+                // Žádost nebo stížnost - 299 Kč
+                'obdrzel-exekuce-splatky': 'Návrh splátkového kalendáře k exekuci',
+                'obdrzel-exekuce-majetkove': 'Upozornění na chráněný majetek',
+                'obdrzel-soudni-doplnit': 'Doplnění vyjádření k soudu',
+                'obdrzel-soudni-zastoupeni': 'Žádost o právní zastoupení',
+                'chci_vyridit-prace-nezamestnanost': 'Hlášení nezaměstnanosti',
+                'chci_vyridit-prace-rekvalifikace': 'Žádost o rekvalifikaci',
+                'chci_vyridit-prace-spor': 'Řešení pracovního sporu',
+                'chci_vyridit-zdravi-invalidita': 'Žádost o invalidní důchod',
+                'chci_vyridit-zdravi-posudek': 'Žádost o zdravotní posudek',
+                'chci_vyridit-bydleni-najem': 'Řešení problému s nájmem',
+                'chci_vyridit-bydleni-reklamace': 'Reklamace bytových závad',
+                'chci_vyridit-bydleni-sousede': 'Řešení sousedského sporu',
+                'chci_vyridit-dane-priznani': 'Pomoc s daňovým přiznáním',
+                'mam_problem-diskriminace-stiznost': 'Stížnost na diskriminaci',
+                'mam_problem-diskriminace-ombudsman': 'Stížnost ombudsmanovi',
+                'mam_problem-diskriminace-antidiskriminacni': 'Využití antidiskriminačního zákona',
+                'mam_problem-chyba-oprava': 'Žádost o opravu úřední chyby',
+                'mam_problem-chyba-prepocet': 'Žádost o přepočet',
+                'mam_problem-chyba-vysvetleni': 'Žádost o vysvětlení postupu',
+                'mam_problem-dluh-insolvence': 'Insolvence - řešení úpadku',
+                'nevim-zdravotni-invalidita': 'Konzultace k invaliditě',
+                'nevim-zdravotni-nemocenske': 'Konzultace k nemocenským dávkám',
+                'nevim-zdravotni-pece': 'Konzultace k příspěvku na péči',
+                'nevim-rodinne-alimenty': 'Konzultace k výživnému',
+                'nevim-rodinne-opatrovna': 'Konzultace k opatrovnictví',
+                'nevim-rodinne-rozvod': 'Konzultace k rozvodu',
+                'nevim-obecne-konzultace': 'Obecná právní konzultace',
+                'nevim-obecne-smerovani': 'Nasměrování na správný úřad',
+                'nevim-obecne-prvni_pomoc': 'Právní první pomoc',
+                'nevim-financni-poradna': 'Konzultace s finanční poradnou'
+            };
+            
+            const key = `${wizardData.step1}-${wizardData.step2}-${wizardData.step3}`;
+            return combinations[key] || 'Individuální dokument';
+        }
+
+        function getActionDescription() {
+            const actions = {
+                'odvolat': 'Podat odvolání',
+                'splatky': 'Požádat o splátkový kalendář',
+                'namitka': 'Podat námitku',
+                'pridat': 'Nová žádost',
+                'stiznost': 'Podat stížnost',
+                'zadat': 'Nová žádost',
+                'prodlouzit': 'Požádat o prodloužení',
+                'mop': 'Požádat o mimořádnou pomoc',
+                'odklad': 'Požádat o odklad',
+                'doplnit': 'Doplnit podklady',
+                'vysvetlit': 'Požádat o vysvětlení',
+                'dostavit': 'Omluvit se z jednání',
+                'nezamestnanost': 'Hlášení nezaměstnanosti',
+                'rekvalifikace': 'Žádost o rekvalifikaci',
+                'invalidita': 'Žádost o invalidní důchod',
+                'posudek': 'Žádost o posudek',
+                'najem': 'Řešení problému s nájmem',
+                'reklamace': 'Reklamace závad',
+                'priznani': 'Daňové přiznání',
+                'oprava': 'Žádost o opravu',
+                'prepocet': 'Žádost o přepočet',
+                'konzultace': 'Konzultace',
+                'davky': 'Žádost o dávky',
+                'alimenty': 'Věc výživného',
+                'chyba': 'Upozornění na chybu',
+                'zvysit': 'Žádost o zvýšení',
+                'obnovit': 'Obnovení žádosti',
+                'spor': 'Řešení sporu',
+                'sousede': 'Sousedský spor',
+                'majetkove': 'Chráněný majetek',
+                'zastoupeni': 'Právní zastoupení',
+                'soud': 'Správní žaloba',
+                'ombudsman': 'Stížnost ombudsmanovi',
+                'antidiskriminacni': 'Antidiskriminační zákon',
+                'insolvence': 'Insolvence',
+                'nemocenske': 'Nemocenské dávky',
+                'pece': 'Příspěvek na péči',
+                'opatrovna': 'Opatrovnictví',
+                'rozvod': 'Rozvod',
+                'smerovani': 'Nasměrování',
+                'prvni_pomoc': 'První pomoc',
+                'poradna': 'Finanční poradna'
+            };
+            return actions[wizardData.step3] || 'Individuální řešení';
+        }
+
+        // Dokončení wizardu
+        function finishWizard() {
+            // Uložit data wizardu pro další zpracování
+            sessionStorage.setItem('wizardData', JSON.stringify(wizardData));
+            
+            // Skrýt wizard
+            hideWizard();
+            
+            // Předvyplnit hlavní formulář podle wizardu
+            prefillMainForm();
+            
+            // Scroll na hlavní formulář
+            document.getElementById('objednavka').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Funkce pro určení typu dokumentu podle ceny
+        function getDocumentTypeFromPrice(basePrice) {
+            if (basePrice <= 199) return 'Jednoduchá odpověď';
+            if (basePrice >= 399) return 'Odvolání / Námitka'; 
+            return 'Žádost nebo stížnost'; // 299 a ostatní
+        }
+
+        // Předvyplnění hlavního formuláře
+        function prefillMainForm() {
+            const documentType = getDocumentTypeDescription();
+            const situation = generateSituationText();
+            
+            // Získat základní cenu bez příplatků
+            updateWizardPriceByDocumentType();
+            const basePrice = wizardData.estimatedPrice;
+            
+            // Určit správný typ dokumentu podle ceny
+            const mainDocumentType = getDocumentTypeFromPrice(basePrice);
+            
+            // Automaticky zakliknout správný typ dokumentu
+            const targetOption = [...document.querySelectorAll('.option')].find(option => {
+                const h3 = option.querySelector('h3');
+                return h3 && h3.textContent.trim() === mainDocumentType;
+            });
+            
+            if (targetOption) {
+                selectOption(targetOption, mainDocumentType, basePrice);
+            }
+            
+            // Předvyplnit popis situace
+            const descriptionField = document.getElementById('popis');
+            if (descriptionField) {
+                descriptionField.value = situation;
+            }
+            
+            // Nastavit expresní/urgentní vyřízení pokud bylo zvoleno v wizardu
+            if (wizardData.step4 === 'express') {
+                const expresCheckbox = document.getElementById('expres');
+                if (expresCheckbox) {
+                    expresCheckbox.checked = true;
+                    updateCena();
+                }
+            } else if (wizardData.step4 === 'urgent') {
+                const urgentCheckbox = document.getElementById('urgent');
+                if (urgentCheckbox) {
+                    urgentCheckbox.checked = true;
+                    updateCena();
+                }
+            }
+        }
+
+        // Generování textu situace pro formulář
+        function generateSituationText() {
+            const templates = {
+                // Jednoduchá odpověď
+                'obdrzel-pokuta-splatky': 'Obdržel jsem pokutu a potřebuji požádat o splátkový kalendář, protože nejsem schopen uhradit celou částku najednou.',
+                'obdrzel-pokuta-odklad': 'Obdržel jsem pokutu a potřebuji požádat o odklad platební lhůty z důvodu aktuální finanční situace.',
+                'obdrzel-pokuta-chyba': 'Obdržel jsem pokutu, ve které se nachází chyba, kterou je třeba opravit.',
+                'obdrzel-vyzva-dostavit': 'Obdržel jsem výzvu k osobnímu jednání, ale nemohu se z vážných důvodů dostavit v uvedeném termínu.',
+                'obdrzel-vyzva-doplnit': 'Obdržel jsem výzvu k doplnění dokumentů a chci požádat o poskytnutí potřebných podkladů.',
+                'obdrzel-vyzva-vysvetlit': 'Obdržel jsem výzvu, které nerozumím, a potřebuji vysvětlení postupu.',
+                'chci_vyridit-davky-pridat': 'Chci požádat o sociální dávky kvůli změně mé finanční situace a potřebuji pomoc s vyplněním žádosti.',
+                'chci_vyridit-davky-zvysit': 'Chci požádat o zvýšení sociálních dávek, protože se změnily mé životní podmínky.',
+                'chci_vyridit-davky-obnovit': 'Chci obnovit žádost o sociální dávky, které mi byly ukončeny.',
+                'chci_vyridit-dane-splatky': 'Potřebuji požádat o splátkový kalendář pro úhradu daní, protože nejsem schopen zaplatit celou částku najednou.',
+                'chci_vyridit-dane-odklad': 'Potřebuji požádat o odklad daňové platby z důvodu momentální finanční situace.',
+
+                // Odvolání / Námitka
+                'obdrzel-pokuta-odvolat': 'Obdržel jsem pokutu, se kterou zásadně nesouhlasím a chci podat odvolání. Považuji pokutování za nesprávné.',
+                'obdrzel-exekuce-namitka': 'Byl mi doručen exekuční příkaz, proti kterému chci podat námitku, protože považuji exekuci za neodůvodněnou.',
+                'obdrzel-rozhodnuti-odvolat': 'Obdržel jsem úřední rozhodnutí, se kterým nesouhlasím a chci podat odvolání.',
+                'mam_problem-nespravedlive-odvolani': 'Považuji rozhodnutí úřadu za nespravedlivé a chci se proti němu odvolat.',
+                'mam_problem-nespravedlive-soud': 'Chci podat správní žalobu proti nesprávnému postupu úřadu.',
+                'obdrzel-soudni-odvolat': 'Nesouhlasím se soudním verdiktem a chci podat odvolání.',
+
+                // Žádost nebo stížnost
+                'mam_problem-diskriminace-stiznost': 'Chci podat stížnost na nevhodné chování úředníka nebo nesprávný postup úřadu.',
+                'chci_vyridit-bydleni-reklamace': 'Chci podat stížnost na špatné podmínky v ubytovně nebo reklamovat bytové závady.',
+                'chci_vyridit-prace-nezamestnanost': 'Chci se přihlásit na úřad práce jako nezaměstnaný a požádat o podporu.',
+                'chci_vyridit-zdravi-invalidita': 'Chci požádat o invalidní důchod z důvodu zdravotního stavu, který mi neumožňuje práci.',
+                'mam_problem-chyba-oprava': 'Úřad udělal chybu v dokumentu nebo výpočtu a potřebuji požádat o nápravu.',
+                'nevim-obecne-konzultace': 'Potřebuji poradit s mojí situací a nasměrování na správný úřad nebo postup.',
+                'chci_vyridit-prace-rekvalifikace': 'Chci požádat o rekvalifikační kurz, abych se mohl přeškolit na jinou profesi.',
+                'chci_vyridit-zdravi-posudek': 'Potřebuji požádat o zdravotní posudek pro posouzení mé pracovní schopnosti.',
+                'chci_vyridit-bydleni-najem': 'Mám problém s pronajímatelem a potřebuji pomoc s řešením nájemní smlouvy.',
+                'chci_vyridit-dane-priznani': 'Potřebuji pomoc s vyplněním a podáním daňového přiznání.',
+                'mam_problem-chyba-prepocet': 'Úřad udělal chybu ve výpočtu a potřebuji požádat o přepočet částky.'
+            };
+            
+            const key = `${wizardData.step1}-${wizardData.step2}-${wizardData.step3}`;
+            return templates[key] || `Potřebuji pomoc s dokumentem typu: ${getDocumentTypeDescription()}. Má situace: ${getSituationDescription()}.`;
+        }
+
+        // Skrytí wizardu
+        function hideWizard() {
+            document.getElementById('wizard').classList.add('hidden');
+        }
+
+        // Zobrazení wizardu (volané z hlavního CTA tlačítka)
+        function showWizard() {
+            document.getElementById('wizard').classList.remove('hidden');
+            
+            // Reset wizardu na začátek
+            wizardData = {step1: null, step2: null, step3: null, step4: null, estimatedPrice: 199};
+            
+            // Skrýt všechny kroky
+            document.querySelectorAll('.wizard-step').forEach(step => {
+                step.classList.remove('active');
+                step.style.display = 'none';
+            });
+            
+            // Zobrazit první krok
+            const firstStep = document.getElementById('wizard-step-1');
+            firstStep.classList.add('active');
+            firstStep.style.display = 'block';
+            
+            // Reset progress indikátoru
+            updateProgressIndicator(1);
+            
+            // Scroll na wizard
+            document.getElementById('wizard').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // ===== PŮVODNÍ FUNKCE STRÁNKY =====
+        // Načtení uloženého jazyka z localStorage
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('dokumentuj-language');
+            if (savedLanguage && savedLanguage !== 'cs') {
+                switchLanguage(savedLanguage);
+            }
+        });
+
+        // Funkce pro přepínání jazyků
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            // Aktualizace aktivního tlačítka
+            document.querySelectorAll('.language-switcher button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('lang-' + lang).classList.add('active');
+
+            // Aktualizace všech textů
+            document.querySelectorAll('[data-cs]').forEach(element => {
+                const csText = element.getAttribute('data-cs');
+                const uaText = element.getAttribute('data-ua');
+                if (lang === 'ua' && uaText) {
+                    element.innerHTML = uaText;
+                } else if (lang === 'cs' && csText) {
+                    element.innerHTML = csText;
+                }
+            });
+
+            // Aktualizace title stránky
+            const titleElement = document.querySelector('title');
+            const titleCs = titleElement.getAttribute('data-cs');
+            const titleUa = titleElement.getAttribute('data-ua');
+            if (lang === 'ua' && titleUa) {
+                titleElement.textContent = titleUa;
+            } else if (lang === 'cs' && titleCs) {
+                titleElement.textContent = titleCs;
+            }
+
+            // Uložení jazyka do localStorage
+            localStorage.setItem('dokumentuj-language', lang);
+            // Aktualizace jazyka dokumentu
+            document.documentElement.lang = lang;
+        }
+
+        function selectOption(element, typ, cena) {
+            document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+
+            // Překlad názvu služby podle aktuálního jazyka
+            let serviceNameCs = typ;
+            let serviceNameUa = typ;
+
+            if (typ === 'Jednoduchá odpověď') {
+                serviceNameUa = 'Проста відповідь';
+            } else if (typ === 'Odvolání / Námitka') {
+                serviceNameUa = 'Апеляція / Заперечення';
+            } else if (typ === 'Žádost nebo stížnost') {
+                serviceNameUa = 'Заява або скарга';
+            }
+
+            document.getElementById('typDokumentu').value = currentLanguage === 'ua' ? serviceNameUa : serviceNameCs;
+            document.getElementById('zakladniCena').value = cena;
+
+            const serviceName = currentLanguage === 'ua' ? serviceNameUa : serviceNameCs;
+            const priceText = currentLanguage === 'ua' ? 
+                `Обрана послуга: ${serviceName} – ${cena} крон` : 
+                `Zvolená služba: ${serviceName} – ${cena} Kč`;
+
+            document.getElementById('priceInfo').innerText = priceText;
+            document.getElementById('docForm').style.display = 'block';
+            zakladniCena = cena;
+            updateCena();
+            document.getElementById('docForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function handleKeyPress(event, element, typ, cena) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                selectOption(element, typ, cena);
+            }
+        }
+
+        function updateCena() {
+            const expres = document.getElementById('expres').checked;
+            const urgent = document.getElementById('urgent').checked;
+            let cena = zakladniCena;
+            
+            // Zajistit, že jen jedna možnost rychlosti je aktivní
+            if (urgent && expres) {
+                document.getElementById('expres').checked = false;
+            }
+            
+            if (expres) cena += 100;
+            if (urgent) cena += 200;
+
+            const priceText = currentLanguage === 'ua' ? 
+                `Загальна ціна: ${cena} крон` : 
+                `Celková cena: ${cena} Kč`;
+
+            document.getElementById('finalPrice').innerText = priceText;
+        }
+
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const wasActive = item.classList.contains('active');
+
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        function handleAccordionKey(event, header) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleAccordion(header);
+            }
+        }
+
+        // Tabs functionality
+        function switchTab(event, tabName) {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Smooth scrolling pro CTA tlačítka a navigaci
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Speciální handling pro wizard link
+                    if (this.getAttribute('href') === '#wizard') {
+                        showWizard();
+                        return;
+                    }
+
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
